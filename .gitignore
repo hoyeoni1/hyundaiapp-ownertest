@@ -10,3 +10,6 @@ local.properties
 
 # 예전 합성용 배경판(더 쓰지 않음, 로컬 보관)
 ssowcar_background_assets/
+
+# 숏폼 빌드 중간 파일
+shortform/scripts/_work/

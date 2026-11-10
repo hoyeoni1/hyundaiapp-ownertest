@@ -11,6 +11,7 @@
 - 신호: [docs/signal-mapping.md](docs/signal-mapping.md) — 조작 6개의 SDK·퍼미션·콘솔 명령·**실측 결과**
 - 사용 가능 기능 목록: [docs/function-inventory.md](docs/function-inventory.md) · 조작별 퍼즐 예시: [docs/puzzle-ideas.md](docs/puzzle-ideas.md)
 - 실측 기록: [docs/measurements/](docs/measurements/) (신호 24단계, 전 과정 e2e)
+- 공모전 숏폼 릴스(오너 테스트 · 스마일): [shortform/README.md](shortform/README.md) — 최종 영상, 녹음 큐시트, 빌드 스크립트
 - 구판: [PRD.md](PRD.md) v0.6(방탈출), [docs/review-log.md](docs/review-log.md)
 
 ## 코드 구조
