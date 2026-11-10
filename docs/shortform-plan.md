@@ -33,6 +33,7 @@
 | 꼬리말 | 이미지와 같은 문장으로 끝낸다: `grainy cinematic, almost no light, desaturated teal and amber, heavy shadows, no music` |
 | 이어 붙이기 | ③의 끝 프레임 = ④의 첫 프레임(m_monster3). 접근이 한 호흡으로 이어진다 |
 | 후보정 | CapCut에서 모든 컷에 같은 색보정(틸·앰버, 대비 +)과 얇은 필름 그레인. 작은 차이는 그레인이 덮는다 |
+| 밝기 | 소재가 매우 어둡다(평균 5~10/255). 휴대폰 자동 밝기와 Shorts 압축에서 검정이 뭉개지므로 최종본은 **그림자 +10~15, 검정 바닥을 0이 아니라 8~10/255**에 두고 그레인을 얹어 밴딩을 막는다. 가장 어두운 컷은 휴대폰에서 밝기 50%로 한 번 확인 |
 | 한계 | Veo는 8초 안에서도 손 모양·글씨가 흔들릴 수 있다. 글씨가 든 ②는 끝 프레임을 앱 이미지로 고정해 마지막은 정확하게, 중간은 흐림으로 넘긴다. 손은 재시도 1~2번 예산 |
 
 ## 세로 이미지 6장 (Nano Banana, 기존 이미지 업로드 → 늘리기)
@@ -50,6 +51,15 @@
 | `v_m_monster3` | m_monster3 | 위와 같음 | 위와 같음 |
 | `v_m_monster5` | m_monster5 | 위와 같음 | 위와 같음 |
 
+### 손 클립용 밝은 판 2장 (2026-11-11 추가)
+
+늘려 만든 6장은 평균 밝기 5~10/255, 아래쪽 45%(손이 움직일 자리)는 2~4/255로 사실상 검정이다. 이 프레임으로 손 클립을 만들면 손이 보이지 않고, 편집에서 밝기를 올려도 정보가 없어 노이즈만 올라온다. 손 클립 ①⑤는 **센터 화면이 켜진 판**을 따로 만들어 첫 프레임으로 쓴다(앱이 센터 화면에서 돌아간다는 설정과도 맞다).
+
+- `v_f_dark_fog100_hand` ← `v_f_dark_fog100.png` 업로드 — `Keep the composition and everything in the image exactly the same, but the center screen is now ON, showing a very dark app screen with a faint teal glow, and the instrument cluster rings glow faint teal. This light softly illuminates the steering wheel, both stalks, the lower dashboard and the driver's footwell so their shapes are clearly readable. Keep the windshield fogged and the garage outside dark. Still nighttime and moody, but the lower half of the frame is about three stops brighter than before. No text, no people.`
+- `v_f_dark_beam_fog0_hand` ← `v_f_dark_beam_fog0.png` 업로드 — `Keep the composition, the pillar and the red graffiti exactly the same, but the center screen is now ON with a faint teal glow, the cluster rings glow faint teal, and warm light bounced back from the headlit pillar softly lights the steering wheel, both stalks and the lower dashboard so their shapes are clearly readable. Still nighttime and moody, lower half about three stops brighter than before. No text other than the existing graffiti, no people.`
+
+확인 기준: 아래쪽 45% 평균 밝기 20~35/255, 95퍼센타일 60 이상. 핸들 림과 레버 윤곽이 썸네일 크기에서도 보여야 한다.
+
 늘리기가 안 되면 아래 프롬프트로 새로 만든다(일관성은 떨어짐).
 
 - `v_f_dark_fog100` — First-person view from the driver's seat of a parked car at night in an underground parking garage, vertical framing that shows the headliner and dome light above and the dashboard and dark footwell below. Steering wheel, dashboard with a dark center screen, rearview mirror. The windshield is completely fogged over with condensation; nothing outside is visible. Interior nearly black, only a faint dashboard glow. Grainy cinematic photo, almost no light, desaturated teal and amber, heavy shadows, no text, 9:16.
@@ -63,11 +73,11 @@
 
 | # | 첫 / 끝 프레임 | 참조 | 프롬프트 |
 |---|---|---|---|
-| ① 더듬는 손 | v_f_dark_fog100 / — | s_lit, f_dark_fog0 | `POV from the driver's seat of a car in near-total darkness, windshield fogged. The same right hand, dark long sleeve, no watch, no rings, gropes across the dashboard, touches the stalk, presses two buttons; nothing happens except faint clicks. Handheld, slightly unsteady. Audio: breathing, small clicks, no music. Grainy cinematic, almost no light, desaturated teal and amber, heavy shadows.` |
+| ① 더듬는 손 | v_f_dark_fog100_hand / — | s_lit, f_dark_fog0 | `POV from the driver's seat of a dark car at night, windshield fogged. The center screen and the cluster rings glow faint teal and are the only light. The same right hand, dark long sleeve, no watch, no rings, enters from the lower right, catches the teal light, gropes across the dashboard, touches the stalk, presses two buttons; nothing happens except faint clicks. The hand and the wheel stay clearly readable in the dim light. Handheld, slightly unsteady. Audio: breathing, small clicks, no music. Grainy cinematic, low key but legible, desaturated teal and amber.` |
 | ② 기둥 | v_f_dark_beam_fog100 / v_f_dark_beam_fog0 | — | `Driver's seat view, headlights on. Condensation on the windshield clears from the center outward until a concrete pillar with red spray-painted Korean graffiti is fully visible. The letters must match the final frame exactly. Static camera. Audio: low wind, then silence. Grainy cinematic, desaturated teal and amber, heavy shadows, no music.` |
 | ③ 접근 1 | v_m_monster1 / v_m_monster3 | — | `Rearview mirror view of a dark parking garage aisle. A tall featureless silhouette walks slowly toward the car, growing larger, no face. Static camera, faint flicker from a distant lamp. Audio: faint scraping, no music. Grainy cinematic, almost no light, desaturated teal and amber.` |
 | ④ 접근 2 | v_m_monster3 / v_m_monster5 | — | `Same rearview mirror. The silhouette comes close behind the car until it fills most of the mirror, no face, slight sway. Audio: scraping grows louder, a slow heartbeat, no music. Grainy cinematic, almost no light, desaturated teal and amber.` |
-| ⑤ 급한 손 | v_f_dark_beam_fog0 / — | s_lit, f_dark_fog0 | `POV from the driver's seat, headlights lighting a concrete pillar ahead. The same right hand, dark long sleeve, no watch, no rings, frantically flips the stalk, jabs buttons, grabs the wheel; quick nervous movements. Audio: rapid clicks, breathing, no music. Grainy cinematic, almost no light, desaturated teal and amber, heavy shadows.` |
+| ⑤ 급한 손 | v_f_dark_beam_fog0_hand / — | s_lit, f_dark_fog0 | `POV from the driver's seat, headlights lighting a concrete pillar ahead; warm light bounces back into the cabin and the center screen glows faint teal. The same right hand, dark long sleeve, no watch, no rings, frantically flips the stalk, jabs buttons, grabs the wheel; quick nervous movements, the hand clearly readable in the bounced light. The graffiti on the pillar stays exactly as in the first frame. Audio: rapid clicks, breathing, no music. Grainy cinematic, low key but legible, desaturated teal and amber.` |
 
 예산: 5클립 100 + 재시도(①⑤ 위주) 100 = 월 200 안.
 
