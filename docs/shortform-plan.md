@@ -22,6 +22,30 @@
 | 33~37 | 검정, 한 글자씩 | 정적 | 당신은 차에 대해 얼마나 알고 있지? | 편집 |
 | 37~40 | 로고 + 한 줄 | 철컥 → 루프 | **오너테스트** / 설명서를 체화하는 차 안의 방탈출 | `docs/logo/` |
 
+## 소재 배분 — 최종 (2026-11-10 밤): 영상은 ① 하나, 나머지는 전부 이미지
+
+영상 크레딧이 적고(월 200, 이미 일부 사용) 이미지는 싸다. 움직임이 꼭 필요한 **"손이 더듬다 실내등을 켜는" ① 한 클립만 Veo**로 만들고, 나머지는 이미지 + CapCut(크로스페이드·마스크 전환·줌·흔들림·하드 컷)로 만든다. 공포 숏폼에서 괴물은 "볼 때마다 가까워져 있는" 하드 컷이 걸어오는 영상보다 무섭다.
+
+| 콘티 구간 | 만드는 법 | 소재 |
+|---|---|---|
+| 2~8 헤매는 손 → 실내등 | **Veo ①** (유일한 영상). 실패하면 아래 정지컷 4장을 0.6~0.8초씩 하드 컷 + 흔들림 효과 | `v_pov_tight_dark`, `v_pov_tight_reach_dash_dark`, `v_pov_tight_reach_up_dark`, `v_pov_tight_lit` |
+| 8~12 제상 → 전조등 → 기둥 | 정지컷 `press_defrost` 0.8초 → `twist_stalk` 0.8초 → 와이드 `fog100_hands`에서 `fog0_hands`로 **원형 마스크 전환 2초**(가운데부터 번짐) → `fog0_hands` 1.5초 110% 줌 | `v_pov_tight_press_defrost_lit`, `v_pov_tight_twist_stalk_lit`, `v_pov_lit_beam_fog100_hands`, `v_pov_lit_beam_fog0_hands` |
+| 12~16 접근 | `monster1` 2초 느린 줌(100→108%) → 하드 컷 `monster3` 2초 | 있음 |
+| 16~19 대사 | `monster3` 정지 + 미세 줌 | 있음 |
+| 19~24 교차 | 0.5초 컷: `monster5` / `press_defrost` / `monster5`(115%) / `twist_stalk` / `monster5`(130%) / `reach_dash_dark` … + 카메라 흔들림 효과 | 있음 + 위 정지컷 |
+| 25~33 플레이 | 에뮬레이터 녹화 `cropped/` | 있음 |
+
+**추가로 만들 이미지 4장** (Gemini 편집, 원본은 `v_pov_tight_lit.png` / `v_pov_tight_dark.png`)
+
+| 파일 | 원본 | 프롬프트 |
+|---|---|---|
+| `v_pov_tight_reach_dash_dark` | v_pov_tight_dark | `Keep this image exactly as it is, but move the right hand off the wheel: the right arm reaches forward and the right hand touches the dashboard just left of the center screen, fingers spread as if feeling around in the dark. The left hand stays on the wheel. Same dark sleeve, no watch, no rings. No text.` |
+| `v_pov_tight_reach_up_dark` | v_pov_tight_dark | `Keep this image exactly as it is, but raise the right arm toward the ceiling so the hand leaves the top of the frame; only the right forearm in the dark sleeve is visible at the top edge. The left hand stays on the wheel. No text.` |
+| `v_pov_tight_press_defrost_lit` | v_pov_tight_lit | `Keep this image exactly as it is, but move the right hand to the climate control panel below the center screen, index finger pressing one button; a small front-defroster icon on that button is lit. The left hand stays on the wheel. Same dark sleeve, no watch, no rings. No text.` |
+| `v_pov_tight_twist_stalk_lit` | v_pov_tight_lit | `Keep this image exactly as it is, but move the left hand to the end of the left stalk behind the steering wheel, gripping it as if twisting; the instrument cluster slightly brighter. The right hand stays on the wheel. Same dark sleeve, no watch, no rings. No text.` |
+
+Veo는 ①만(20크레딧, 재시도 1~2번). 크레딧이 40 이상 남으면 ⑤(급한 손)도 만들고, 아니면 19~24초는 정지컷 교차로 간다. 아래 "Veo 클립 6개" 표는 크레딧이 넉넉할 때의 안으로 남긴다.
+
 ## 일관성 — 영상이 앱과 같은 세계로 보이게
 
 | 방법 | 내용 |
