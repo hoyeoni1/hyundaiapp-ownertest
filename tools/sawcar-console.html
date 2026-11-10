@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>쏘우카 콘솔</title>
+<style>
+  :root {
+    --bg: #0b0e12; --panel: #161a20; --panel-2: #1e232b; --line: #2a313b;
+    --ink: #d8d2c4; --dim: #8a857a; --amber: #e0a450; --green: #6fd37a; --red: #e8453c; --blue: #5aa9e6;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--ink); font-family: system-ui, "Malgun Gothic", sans-serif; }
+  body { display: flex; flex-direction: column; align-items: center; }
+
+  /* 상단 바 */
+  .bar { width: 100%; max-width: 1400px; display: flex; align-items: center; gap: 16px; padding: 10px 16px; font-size: 14px; color: var(--dim); }
+  .bar b { color: var(--ink); font-weight: 600; }
+  .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #555; margin-right: 6px; vertical-align: middle; }
+  .dot.ok { background: var(--green); } .dot.bad { background: var(--red); }
+  .bar .sp { flex: 1; }
+  .bar a { color: var(--dim); }
+
+  /* 무대: 차 실내. 16:10, 안의 모든 크기는 cqw(무대 폭 기준) */
+  .stage { position: relative; width: min(100vw - 24px, 1400px); aspect-ratio: 16 / 10; container-type: size; overflow: hidden;
+           background: radial-gradient(ellipse at 50% 30%, #1a2027 0%, #0b0e12 70%); border: 1px solid var(--line); border-radius: 12px; }
+  .abs { position: absolute; }
+  .label { position: absolute; font-size: 1.05cqw; color: var(--dim); letter-spacing: .02em; }
+
+  /* 앞유리 + 룸미러(상태 요약) */
+  .windshield { left: 9%; top: 9%; width: 82%; height: 30%; border-radius: 40% 40% 6% 6% / 70% 70% 8% 8%;
+                background: linear-gradient(180deg, #0e141a, #121a21 60%, #0f151b); border: .4cqw solid #20262e; }
+  .mirror { left: 31%; top: 11.5%; width: 38%; height: 10%; background: #0a0d10; border: .35cqw solid #2d343d; border-radius: 1.2cqw;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-size: 1.2cqw; line-height: 1.5; color: #b9b3a6; padding: 0 1cqw; }
+  .mirror .l1 { display: block; white-space: nowrap; }
+  .mirror small { display: block; color: var(--dim); font-size: .95cqw; white-space: nowrap; }
+
+  /* 버튼 공통 */
+  .btn { position: absolute; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .3cqw;
+         background: var(--panel-2); color: var(--ink); border: .15cqw solid var(--line); border-radius: 1cqw; cursor: pointer; user-select: none;
+         font-size: 1.1cqw; line-height: 1.2; transition: background .12s, border-color .12s, box-shadow .12s; }
+  .btn:hover { background: #262c36; }
+  .btn:active { background: #30384488; }
+  .btn .ico { font-size: 2.2cqw; line-height: 1; }
+  .btn.on { border-color: var(--amber); box-shadow: 0 0 1.2cqw #e0a45055, inset 0 0 .8cqw #e0a45022; color: #fff; }
+  .btn.on .ico { color: var(--amber); }
+  .btn.red.on { border-color: var(--red); box-shadow: 0 0 1.4cqw #e8453c66; } .btn.red.on .ico { color: var(--red); }
+  .btn.green.on { border-color: var(--green); box-shadow: 0 0 1.2cqw #6fd37a55; } .btn.green.on .ico { color: var(--green); }
+  .btn.small { font-size: .95cqw; border-radius: .7cqw; }
+  .btn.disabled { opacity: .35; pointer-events: none; }
+
+  /* 천장: 실내등 */
+  .dome { left: 45%; top: 1.6%; width: 10%; height: 7%; border-radius: 1.4cqw; }
+
+  /* 운전석 문 */
+  .door { left: 0; top: 36%; width: 9%; height: 62%; background: linear-gradient(90deg, #1a1f26, #141920); border-right: .3cqw solid #262d36; border-radius: 0 3cqw 0 0; }
+  .door .btn { left: 12%; width: 76%; }
+  .b-lock { top: 10%; height: 15%; }
+  .b-door { top: 29%; height: 15%; }
+  .window-sw { position: absolute; left: 18%; top: 52%; width: 64%; height: 28%; border: .15cqw solid #2a313b; border-radius: .8cqw; opacity: .5;
+               display: grid; grid-template-columns: 1fr 1fr; gap: .4cqw; padding: .5cqw; }
+  .window-sw i { background: #222830; border-radius: .4cqw; }
+
+  /* 핸들 + 계기판 */
+  .wheel { left: 17%; top: 44%; width: 30%; aspect-ratio: 1; border-radius: 50%; border: 2.2cqw solid #1c2129; box-shadow: inset 0 0 0 .3cqw #2b323b, 0 0 2cqw #000a;
+           background: radial-gradient(circle at 50% 50%, #12161b 0 34%, transparent 35%); }
+  .wheel::after { content: ""; position: absolute; left: 32%; top: 32%; width: 36%; height: 36%; border-radius: 40%; background: #171c23; border: .2cqw solid #2b323b; }
+  .cluster { left: 22.5%; top: 46%; width: 19%; height: 9%; background: #06080b; border: .25cqw solid #232a33; border-radius: 1cqw;
+             display: flex; align-items: center; justify-content: space-evenly; font-size: 1.6cqw; color: #2c333c; }
+  .cluster span { transition: color .1s, text-shadow .1s; }
+  .cluster .lit-green { color: var(--green); text-shadow: 0 0 .8cqw #6fd37a; }
+  .cluster .lit-amber { color: var(--amber); text-shadow: 0 0 .8cqw #e0a450; }
+  .cluster .lit-red { color: var(--red); text-shadow: 0 0 .8cqw #e8453c; }
+  .cluster .lit-blue { color: var(--blue); text-shadow: 0 0 .8cqw #5aa9e6; }
+  .cluster .lit-white { color: #e8e8e8; text-shadow: 0 0 .8cqw #fff8; }
+  @keyframes blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: .15; } }
+  .cluster .blink { animation: blink .8s step-end infinite; }
+
+  /* 왼쪽 레버: 전조등(끝 다이얼) + 방향지시등(위/아래) */
+  .stalk { left: 9.5%; top: 63.5%; width: 9%; height: 3.2%; background: linear-gradient(180deg, #2a313b, #1a1f26); border-radius: .6cqw 0 0 .6cqw; }
+  .stalk-dial { left: 9.6%; top: 60%; width: 8.6%; height: 10%; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: .25cqw; background: #12161b; border-radius: .8cqw; padding: .3cqw; }
+  .stalk-dial .btn { position: static; border-radius: .5cqw; font-size: .9cqw; }
+  .b-turn-r { left: 10.2%; top: 51%; width: 7.4%; height: 7.5%; }
+  .b-turn-l { left: 10.2%; top: 71.5%; width: 7.4%; height: 7.5%; }
+  .b-turn-off { left: 18.2%; top: 71.5%; width: 4.6%; height: 7.5%; }
+  .b-answer { left: 18.2%; top: 51%; width: 4.6%; height: 7.5%; }
+  .b-high { left: 23.2%; top: 51%; width: 4.6%; height: 7.5%; }
+
+  /* 페달 */
+  .pedal { left: 23%; top: 84%; width: 9%; height: 14%; border-radius: 1cqw 1cqw .4cqw .4cqw; background: linear-gradient(180deg, #2a313b, #1a1f26); }
+  .pedal.on { background: linear-gradient(180deg, #5a2320, #3a1512); }
+  .b-brake8 { left: 33%; top: 86%; width: 7%; height: 10%; }
+
+  /* 센터: 화면(로그) + 공조 패널 + 기어 */
+  .center { left: 49%; top: 42%; width: 25%; height: 56%; background: linear-gradient(180deg, #171c23, #10141a); border: .2cqw solid #262d36; border-radius: 1.4cqw 1.4cqw 0 0; }
+  .screen { left: 50.5%; top: 44%; width: 22%; height: 15%; background: #05070a; border: .25cqw solid #232a33; border-radius: .8cqw; padding: .7cqw .9cqw; overflow: hidden;
+            font: .95cqw/1.5 ui-monospace, Consolas, monospace; color: #8fb7a0; }
+  .screen div { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .screen .err { color: #e07a74; }
+  .climate { left: 50.5%; top: 61%; width: 22%; height: 15%; display: grid; grid-template-columns: 1fr 1fr; gap: .8cqw; }
+  .climate .btn { position: static; }
+  .heat-levels { position: absolute; left: 50.5%; top: 77.5%; width: 22%; height: 6%; display: grid; grid-template-columns: repeat(4, 1fr); gap: .5cqw; }
+  .heat-levels .btn { position: static; }
+  .gear { left: 50.5%; top: 86%; width: 22%; height: 10%; display: grid; grid-template-columns: repeat(4, 1fr); gap: .6cqw; }
+  .gear .btn { position: static; font-size: 1.6cqw; font-weight: 600; }
+
+  /* 조수석 문 */
+  .door-r { right: 0; top: 36%; width: 9%; height: 62%; background: linear-gradient(270deg, #1a1f26, #141920); border-left: .3cqw solid #262d36; border-radius: 3cqw 0 0 0; }
+  .door-r .btn { left: 12%; width: 76%; }
+  .b-door-fr { top: 10%; height: 15%; }
+  .b-door-rl { top: 29%; height: 11%; }
+  .b-door-rr { top: 43%; height: 11%; }
+  .b-reset { top: 78%; height: 14%; }
+
+  /* 좁은 화면 */
+  @media (max-width: 700px) { .bar { font-size: 12px; flex-wrap: wrap; } }
+</style>
+</head>
+<body>
+  <div class="bar">
+    <span><span id="dot" class="dot"></span><b id="conn">연결 확인 중</b> <span id="base"></span></span>
+    <span id="hint"></span>
+    <span class="sp"></span>
+    <a id="orig" href="#" target="_blank">원래 콘솔 열기</a>
+  </div>
+
+  <div class="stage" id="stage">
+    <!-- 천장 -->
+    <div class="btn dome" id="b-cabin" title="실내등"><span class="ico">💡</span><span>실내등</span></div>
+
+    <!-- 앞유리 · 룸미러 -->
+    <div class="abs windshield"></div>
+    <div class="abs mirror" id="mirror">상태를 읽는 중…</div>
+
+    <!-- 운전석 문 -->
+    <div class="abs door">
+      <div class="btn b-lock" id="b-lock"><span class="ico">🔓</span><span>잠금</span></div>
+      <div class="btn b-door" id="b-door-fl"><span class="ico">🚪</span><span>운전석 문</span></div>
+      <div class="window-sw"><i></i><i></i><i></i><i></i></div>
+    </div>
+
+    <!-- 핸들 · 계기판 -->
+    <div class="abs wheel"></div>
+    <div class="abs cluster" id="cluster">
+      <span id="i-left" title="좌회전">◀</span>
+      <span id="i-lock" title="잠금">🔒</span>
+      <span id="i-door" title="문 열림">🚪</span>
+      <span id="i-low" title="전조등">🔆</span>
+      <span id="i-high" title="상향등">🔵</span>
+      <span id="i-defrost" title="앞유리 제상">♒</span>
+      <span id="i-heat" title="핸들 열선">♨</span>
+      <span id="i-brake" title="브레이크">⬤</span>
+      <span id="i-right" title="우회전">▶</span>
+    </div>
+
+    <!-- 왼쪽 레버 -->
+    <div class="abs stalk"></div>
+    <div class="abs stalk-dial" id="dial">
+      <div class="btn small" data-head="Off">끔</div>
+      <div class="btn small" data-head="Position">미등</div>
+      <div class="btn small" data-head="LowBeam">전조등</div>
+    </div>
+    <div class="btn green b-turn-r" id="b-turn-r"><span class="ico">▲</span><span>우회전 (위로)</span></div>
+    <div class="btn green b-turn-l" id="b-turn-l"><span class="ico">▼</span><span>좌회전 (아래로)</span></div>
+    <div class="btn small b-turn-off" id="b-turn-off"><span>깜빡이<br>끄기</span></div>
+    <div class="btn small b-answer" id="b-answer"><span>◀ ◀ ▶<br>자동</span></div>
+    <div class="btn small b-high" id="b-high"><span class="ico">🔵</span><span>상향</span></div>
+    <div class="label" style="left:9.6%; top:48.3%;">라이트 레버</div>
+
+    <!-- 페달 -->
+    <div class="btn red pedal" id="b-brake"><span class="ico">🦶</span><span>브레이크<br>(누르는 동안)</span></div>
+    <div class="btn small red b-brake8" id="b-brake8"><span>8초<br>밟기</span></div>
+
+    <!-- 센터 -->
+    <div class="abs center"></div>
+    <div class="abs screen" id="log"></div>
+    <div class="abs climate">
+      <div class="btn" id="b-defrost"><span class="ico">♒</span><span>앞유리 제상</span></div>
+      <div class="btn" id="b-heat"><span class="ico">♨</span><span>핸들 열선 <b id="heat-lv">0</b></span></div>
+    </div>
+    <div class="heat-levels" id="heat-levels">
+      <div class="btn small" data-heat="0">끔</div>
+      <div class="btn small" data-heat="1">1</div>
+      <div class="btn small" data-heat="2">2</div>
+      <div class="btn small" data-heat="3">3</div>
+    </div>
+    <div class="abs gear" id="gear">
+      <div class="btn" data-gear="Park">P</div>
+      <div class="btn disabled" data-gear="Reverse">R</div>
+      <div class="btn disabled" data-gear="Neutral">N</div>
+      <div class="btn" data-gear="Drive">D</div>
+    </div>
+
+    <!-- 조수석 쪽 -->
+    <div class="abs door-r">
+      <div class="btn b-door-fr" id="b-door-fr"><span class="ico">🚪</span><span>조수석 문</span></div>
+      <div class="btn small b-door-rl" id="b-door-rl"><span>뒷문 좌</span></div>
+      <div class="btn small b-door-rr" id="b-door-rr"><span>뒷문 우</span></div>
+      <div class="btn small b-reset" id="b-reset"><span class="ico">↺</span><span>처음 상태</span></div>
+    </div>
+  </div>
+
+<script>
+(() => {
+  const BASE = new URLSearchParams(location.search).get('url') || 'http://localhost:8088';
+  document.getElementById('base').textContent = BASE;
+  document.getElementById('orig').href = BASE;
+  const $ = id => document.getElementById(id);
+
+  // ---------- 통신 ----------
+  let online = null;       // null: 모름, true/false
+  let state = null;
+  const logEl = $('log');
+  const lines = [];
+  function log(text, cls) {
+    const t = new Date().toTimeString().slice(0, 8);
+    lines.unshift(`<div class="${cls || ''}">${t} ${text}</div>`);
+    if (lines.length > 7) lines.pop();
+    logEl.innerHTML = lines.join('');
+  }
+  async function put(path) {
+    try {
+      const r = await fetch(`${BASE}/vehicle/${path}`, { method: 'PUT' });
+      log(`${r.status} ${path}`, r.ok ? '' : 'err');
+      if (r.status === 503) setHint('503: 에뮬레이터가 비활성 — 하트비트가 닿는지 확인');
+      setTimeout(poll, 150);
+      return r.status;
+    } catch (e) {
+      log(`실패 ${path}`, 'err');
+      return 0;
+    }
+  }
+  function setHint(t) { $('hint').textContent = t || ''; }
+  async function heartbeat() {
+    try {
+      const r = await fetch(`${BASE}/browser/session?client=sawcar-console`, { method: 'POST' });
+      setOnline(r.ok);
+    } catch (e) { setOnline(false); }
+  }
+  function setOnline(ok) {
+    if (ok === online) return;
+    online = ok;
+    $('dot').className = 'dot ' + (ok ? 'ok' : 'bad');
+    $('conn').textContent = ok ? '에뮬레이터 콘솔 연결됨' : '연결 안 됨';
+    setHint(ok ? '' : 'adb forward tcp:8088 tcp:8088 (또는 tools/vconsole.sh up) 뒤 에뮬레이터가 켜져 있어야 합니다');
+  }
+  async function poll() {
+    try {
+      const r = await fetch(`${BASE}/vehicle/state`);
+      if (!r.ok) return;
+      state = await r.json();
+      render();
+    } catch (e) { /* 하트비트가 상태를 표시 */ }
+  }
+
+  // ---------- 상태 읽기 ----------
+  const get = (o, path, d) => path.split('.').reduce((a, k) => (a && a[k] !== undefined ? a[k] : undefined), o) ?? d;
+  function view() {
+    const s = state || {};
+    return {
+      locked: get(s, 'body.door_locks.all', false),
+      doors: get(s, 'body.doors', {}),
+      cabin: get(s, 'body.cabin_light.on', false),
+      heat: get(s, 'steering_wheel_heat.level', 0),
+      defrost: get(s, 'hvac.front_defroster_on', false),
+      head: get(s, 'lights.headlamp_mode', 'Off'),
+      high: get(s, 'lights.high_beam_on', false),
+      turn: get(s, 'lights.turn_signal_mode', 'Off'),
+      brake: get(s, 'controls.brake_pct', 0),
+      gear: get(s, 'gear.actual.value', '?'),
+    };
+  }
+
+  // ---------- 그리기 ----------
+  function setOn(el, on) { el.classList.toggle('on', !!on); }
+  function lit(id, on, color, blink) {
+    const el = $(id);
+    el.className = on ? `lit-${color}${blink ? ' blink' : ''}` : '';
+  }
+  function render() {
+    const v = view();
+    const anyDoor = Object.values(v.doors).some(Boolean);
+    const lowOn = v.head === 'LowBeam';
+
+    // 천장·문
+    setOn($('b-cabin'), v.cabin);
+    $('b-lock').querySelector('.ico').textContent = v.locked ? '🔒' : '🔓';
+    $('b-lock').querySelector('span:last-child').textContent = v.locked ? '잠김 — 눌러서 해제' : '열림 — 눌러서 잠금';
+    setOn($('b-lock'), v.locked);
+    for (const [id, key] of [['b-door-fl', 'front_left'], ['b-door-fr', 'front_right'], ['b-door-rl', 'rear_left'], ['b-door-rr', 'rear_right']]) {
+      const open = !!v.doors[key];
+      setOn($(id), open);
+      const t = $(id).querySelector('span:last-child');
+      if (id === 'b-door-fl') t.textContent = open ? '운전석 문 열림' : '운전석 문';
+      if (id === 'b-door-fr') t.textContent = open ? '조수석 문 열림' : '조수석 문';
+    }
+
+    // 레버
+    document.querySelectorAll('#dial .btn').forEach(b => setOn(b, b.dataset.head === v.head || (v.head === 'Auto' && b.dataset.head === 'LowBeam')));
+    setOn($('b-high'), v.high);
+    setOn($('b-turn-l'), v.turn === 'BlinkLeft' || v.turn === 'FlashLeft');
+    setOn($('b-turn-r'), v.turn === 'BlinkRight' || v.turn === 'FlashRight');
+
+    // 페달
+    setOn($('b-brake'), v.brake > 0);
+
+    // 센터
+    setOn($('b-defrost'), v.defrost);
+    setOn($('b-heat'), v.heat > 0);
+    $('heat-lv').textContent = v.heat;
+    document.querySelectorAll('#heat-levels .btn').forEach(b => setOn(b, Number(b.dataset.heat) === v.heat));
+    document.querySelectorAll('#gear .btn').forEach(b => setOn(b, b.dataset.gear === v.gear));
+
+    // 계기판
+    lit('i-left', v.turn === 'BlinkLeft' || v.turn === 'FlashLeft', 'green', true);
+    lit('i-right', v.turn === 'BlinkRight' || v.turn === 'FlashRight', 'green', true);
+    lit('i-lock', v.locked, 'amber');
+    lit('i-door', anyDoor, 'red');
+    lit('i-low', lowOn || v.head === 'Auto', 'green');
+    lit('i-high', v.high, 'blue');
+    lit('i-defrost', v.defrost, 'amber');
+    lit('i-heat', v.heat > 0, 'amber');
+    lit('i-brake', v.brake > 0, 'red');
+
+    // 룸미러: 쏘우카가 읽는 값 요약
+    const openList = Object.entries(v.doors).filter(([, o]) => o).map(([k]) => ({ front_left: '운전석', front_right: '조수석', rear_left: '뒷좌', rear_right: '뒷우' }[k] || k));
+    $('mirror').innerHTML =
+      `<span class="l1">${v.locked ? '잠김' : '잠금 해제'} · 기어 ${v.gear === 'Park' ? 'P' : v.gear === 'Drive' ? 'D' : v.gear} · 문 ${openList.length ? openList.join('·') + ' 열림' : '모두 닫힘'}</span>` +
+      `<small>실내등 ${v.cabin ? '켜짐' : '꺼짐'} · 열선 ${v.heat} · 제상 ${v.defrost ? '켜짐' : '꺼짐'} · 전조등 ${lowOn ? '켜짐' : v.head === 'Position' ? '미등' : '꺼짐'}${v.high ? ' +상향' : ''} · 깜빡이 ${v.turn === 'Off' ? '꺼짐' : v.turn} · 브레이크 ${v.brake}%</small>`;
+  }
+
+  // ---------- 조작 ----------
+  const b = x => (x ? 'true' : 'false');
+  $('b-cabin').onclick = () => put(`body?cabin_light=${b(!view().cabin)}`);
+  $('b-lock').onclick = () => put(`body?doors_locked=${b(!view().locked)}`);
+  for (const [id, key, name] of [['b-door-fl', 'front_left', 'fl'], ['b-door-fr', 'front_right', 'fr'], ['b-door-rl', 'rear_left', 'rl'], ['b-door-rr', 'rear_right', 'rr']]) {
+    $(id).onclick = () => put(`body?door_${name}=${b(!view().doors[key])}`);
+  }
+  document.querySelectorAll('#dial .btn').forEach(el => el.onclick = () => put(`lights?feature=headlamp_mode&value=${el.dataset.head}`));
+  $('b-high').onclick = () => put(`lights?feature=high_beam&value=${b(!view().high)}`);
+  $('b-turn-l').onclick = () => put(`turn-signal?mode=${view().turn === 'BlinkLeft' ? 'Off' : 'BlinkLeft'}`);
+  $('b-turn-r').onclick = () => put(`turn-signal?mode=${view().turn === 'BlinkRight' ? 'Off' : 'BlinkRight'}`);
+  $('b-turn-off').onclick = () => put('turn-signal?mode=Off');
+  $('b-defrost').onclick = () => put(`hvac?front_defroster=${b(!view().defrost)}`);
+  $('b-heat').onclick = () => put(`steering-wheel-heat?level=${view().heat > 0 ? 0 : 2}`);
+  document.querySelectorAll('#heat-levels .btn').forEach(el => el.onclick = () => put(`steering-wheel-heat?level=${el.dataset.heat}`));
+  document.querySelectorAll('#gear .btn').forEach(el => el.onclick = () => put(`gear?gear=${el.dataset.gear}`));
+
+  // 브레이크: 누르는 동안만
+  const brake = $('b-brake');
+  let braking = false;
+  const brakeOn = e => { e.preventDefault(); if (!braking) { braking = true; put('controls?brake=50'); } };
+  const brakeOff = () => { if (braking) { braking = false; put('controls?brake=0'); } };
+  brake.addEventListener('pointerdown', brakeOn);
+  brake.addEventListener('pointerup', brakeOff);
+  brake.addEventListener('pointerleave', brakeOff);
+  brake.addEventListener('pointercancel', brakeOff);
+  window.addEventListener('blur', brakeOff);
+  let brakeTimer = null;
+  $('b-brake8').onclick = async () => {
+    if (brakeTimer) { clearTimeout(brakeTimer); brakeTimer = null; await put('controls?brake=0'); return; }
+    await put('controls?brake=50');
+    brakeTimer = setTimeout(async () => { brakeTimer = null; await put('controls?brake=0'); }, 8600);
+  };
+
+  // ◀ ◀ ▶ 자동 입력 (1.5초 간격)
+  const sleep = ms => new Promise(r => setTimeout(r, ms));
+  let answering = false;
+  $('b-answer').onclick = async () => {
+    if (answering) return;
+    answering = true; setOn($('b-answer'), true);
+    for (const m of ['BlinkLeft', 'Off', 'BlinkLeft', 'Off', 'BlinkRight', 'Off']) { await put(`turn-signal?mode=${m}`); await sleep(1500); }
+    answering = false; setOn($('b-answer'), false);
+  };
+
+  // 처음 상태
+  $('b-reset').onclick = async () => {
+    for (const p of ['gear?gear=Park', 'body?doors_locked=false', 'body?cabin_light=false', 'lights?feature=headlamp_mode&value=Off',
+                     'lights?feature=high_beam&value=false', 'hvac?front_defroster=false', 'steering-wheel-heat?level=0', 'controls?brake=0',
+                     'turn-signal?mode=Off', 'body?door_fl=false', 'body?door_fr=false', 'body?door_rl=false', 'body?door_rr=false']) await put(p);
+  };
+
+  // ---------- 시작 ----------
+  heartbeat(); poll();
+  setInterval(heartbeat, 1000);
+  setInterval(poll, 1000);
+  log('쏘우카 콘솔 시작');
+})();
+</script>
+</body>
+</html>

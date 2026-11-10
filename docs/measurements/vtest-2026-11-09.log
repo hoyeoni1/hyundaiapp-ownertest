@@ -1,0 +1,48 @@
+### 실내등 ON  (body?cabin_light=true)
+    실내등 ON
+### 실내등 OFF  (body?cabin_light=false)
+    실내등 OFF
+### 핸들 열선 2  (steering-wheel-heat?level=2)
+    핸들 열선 2
+### 핸들 열선 0  (steering-wheel-heat?level=0)
+    핸들 열선 0
+### 앞유리 제상 ON  (hvac?front_defroster=true)
+    제상 true
+### 앞유리 제상 OFF  (hvac?front_defroster=false)
+    제상 false
+### 전조등 LowBeam  (lights?feature=headlamp_mode&value=LowBeam)
+    하향등 ON
+### 전조등 Off  (lights?feature=headlamp_mode&value=Off)
+    하향등 OFF
+### 상향등 ON  (lights?feature=high_beam&value=true)
+    상향등 ON
+### 상향등 OFF  (lights?feature=high_beam&value=false)
+    상향등 OFF
+### 방향지시등 LEFT  (turn-signal?mode=BlinkLeft)
+    방향지시등 LEFT
+### 방향지시등 OFF  (turn-signal?mode=Off)
+    방향지시등 OFF
+### 방향지시등 LEFT 다시  (turn-signal?mode=BlinkLeft)
+    방향지시등 LEFT
+### 방향지시등 OFF 다시  (turn-signal?mode=Off)
+    방향지시등 OFF
+### 방향지시등 RIGHT  (turn-signal?mode=BlinkRight)
+    방향지시등 RIGHT
+### 방향지시등 OFF (3)  (turn-signal?mode=Off)
+    방향지시등 OFF
+### 브레이크 ON  (controls?brake=50)
+    브레이크 true
+### 브레이크 OFF  (controls?brake=0)
+    브레이크 false
+### 잠금  (body?doors_locked=true)
+    잠금 true
+### 잠금 해제  (body?doors_locked=false)
+    잠금 false
+### 운전석 문 열림  (body?door_fl=true)
+    문 FRONT_LEFT 1
+### 운전석 문 닫힘  (body?door_fl=false)
+    문 FRONT_LEFT 0
+### 기어 D  (gear?gear=Drive)
+    기어 GEAR_DRIVE
+### 기어 P  (gear?gear=Park)
+    기어 GEAR_PARK

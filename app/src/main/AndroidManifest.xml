@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-feature
+        android:name="android.hardware.type.automotive"
+        android:required="true" />
+
+    <!-- 조회 퍼미션만. 제어(CONTROL_*)는 선언하지 않는다 -->
+    <!-- 실내등·전조등 -->
+    <uses-permission android:name="pleos.car.permission.CAR_LIGHTS" />
+    <!-- 앞유리 제상 -->
+    <uses-permission android:name="pleos.car.permission.CAR_CLIMATE" />
+    <!-- 방향지시등·브레이크·기어·핸들 열선 -->
+    <uses-permission android:name="pleos.car.permission.CAR_DRIVE" />
+    <!-- 문 잠금(시작)·문 열림(결말·조기 탈출) -->
+    <uses-permission android:name="pleos.car.permission.CAR_DOORS" />
+    <!-- 결말의 차 목소리(Pleos TTS SDK) -->
+    <uses-permission android:name="pleos.car.permission.TTS_SERVICE" />
+
+    <application
+        android:largeHeap="true"
+        android:name=".SawCarApp"
+        android:label="@string/app_name"
+        android:icon="@android:drawable/ic_dialog_info"
+        android:theme="@android:style/Theme.DeviceDefault.NoActionBar">
+
+        <!-- DO 미선언: 정차 중에만 쓰는 앱. 주행 중에는 플랫폼이 막는다 -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

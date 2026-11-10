@@ -1,0 +1,44 @@
+
+### 준비: 콘솔 초기화 + 엔진 처음부터(빠른 타이머) (19:07:12)
+phase=TITLE view=FRONT thermal=false/false glow=false/false pillar=false/false monster=false hint=NONE repelled=0 signal=false presses=[] reply=NONE eligible=false retry=0 invHint=null
+
+### 시작: 문 잠금 → PLAYING (19:07:17)
+    ok: phase=PLAYING
+
+### 조사 ①: 실내등 ON, 핸들 확대, 열선 2 → 10초 뒤 열 감응지 (19:07:18)
+    ok: thermal=true/true
+
+### 야광: 실내등 10초 이상 켠 뒤 끄기 → glow 보임/봄 (19:07:30)
+    ok: glow=true/true
+
+### 조사 ②: 정면, 제상 + 전조등 → 10초 뒤 기둥 (19:07:32)
+    ok: pillar=true/true
+
+### 괴물: 15~20초 안에 등장 → 룸미러 → 브레이크 8초 → 격퇴 (등장 뒤 25초 안에 끝내야 한다) (19:07:43)
+    ok: monster=true
+    ok: repelled=1
+
+### 신호: 자격 갖춤 → 10~15초 뒤 신호 → 왼쪽 미러 → ◀ ◀ ▶ → CLEARED (19:07:53)
+    ok: eligible=true
+    ok: signal=true
+    ok: phase=CLEARED
+
+### 결말: 문 열기 → ENDED (19:08:17)
+    ok: phase=ENDED
+
+### 분기 1: 게임 오버 — 처음부터(빠르게), 잠금, 괴물 25초 방치 → GAME_OVER → 다시 (19:08:18)
+    ok: phase=PLAYING
+    ok: monster=true
+    힌트(10초, 기둥 안 봄 → NONE): hint=NONE
+    ok: phase=GAME_OVER
+    ok: phase=PLAYING view=FRONT thermal=false/false glow=false/false pillar=false/false monster=false hint=NONE repelled=0 signal=false presses=[] reply=NONE eligible=false retry=1 invHint=앞을 봐야 한다
+
+### 분기 2: 조기 탈출 — 문 열기 → EARLY_EXIT → 닫고 다시 타기 (19:09:10)
+    ok: phase=EARLY_EXIT
+    ok: phase=PLAYING
+
+### 분기 3: 기어 D → PAUSED_GEAR → P → PLAYING (19:09:13)
+    ok: phase=PAUSED_GEAR
+    ok: phase=PLAYING
+
+### 끝. 콘솔 초기화 (19:09:14)
