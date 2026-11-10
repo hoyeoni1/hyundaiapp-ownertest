@@ -65,6 +65,16 @@
 
 `v_pov_tight_dark`를 `v_pov_tight_lit`에서 만들면 손·핸들이 픽셀 단위로 같아 클립 ①의 첫·끝 프레임 기하가 일치한다(Veo는 손 동작과 빛 변화만 만들면 됨). 검수: 손가락 다섯 개, 소매 색이 네 장 모두 같은지, 와이드 두 장의 핸들 위치가 원본과 같은지. `v_f_dark_fog100`·`v_f_dark_beam_fog100`·`v_f_dark_beam_fog0`는 쓰지 않는다(보관만).
 
+**검수 결과 (2026-11-10, `shortform/images/`)**
+
+| 판 | 결과 |
+|---|---|
+| `v_pov_tight_lit` | 통과. 손·소매·무릎·계기판·실내등 모두 좋음 |
+| `v_pov_tight_dark` | 기하는 일치. 그러나 평균 밝기 5/255, 손 부분 7/255 → 압축되면 검정. **다시**: `Keep this image exactly as it is but make the glow from the center display a little stronger: the hands and the wheel rim clearly visible as dark teal-lit shapes, the rest of the cabin still nearly black. No text.` (목표: 손 부분 15~20/255) |
+| `v_pov_lit_beam_fog100_hands` / `v_pov_lit_beam_fog0_hands` | 통과. 두 장의 구도·손 위치 일치, 기둥 글씨 정확 |
+| `v_m_monster1` / `v_m_monster3` | 통과. 같은 마른 실루엣 |
+| `v_m_monster5` | 형상이 다름(어깨 넓고 젖은 피부). ③→④ 사이에서 괴물이 변신하는 것처럼 보일 수 있음. **다시**(`v_m_monster3`를 편집): `Keep this image exactly as it is but move the same thin featureless silhouette much closer, right behind the car so it fills most of the mirror, head near the top edge, same proportions, no face, no wet skin. No text.` |
+
 늘리기가 안 되면 아래 프롬프트로 새로 만든다(일관성은 떨어짐).
 
 - `v_f_dark_fog100` — First-person view from the driver's seat of a parked car at night in an underground parking garage, vertical framing that shows the headliner and dome light above and the dashboard and dark footwell below. Steering wheel, dashboard with a dark center screen, rearview mirror. The windshield is completely fogged over with condensation; nothing outside is visible. Interior nearly black, only a faint dashboard glow. Grainy cinematic photo, almost no light, desaturated teal and amber, heavy shadows, no text, 9:16.
