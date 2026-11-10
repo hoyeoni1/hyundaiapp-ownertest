@@ -19,7 +19,7 @@
 
     <application
         android:largeHeap="true"
-        android:name=".SawCarApp"
+        android:name=".OwnerTestApp"
         android:label="@string/app_name"
         android:icon="@android:drawable/ic_dialog_info"
         android:theme="@android:style/Theme.DeviceDefault.NoActionBar">

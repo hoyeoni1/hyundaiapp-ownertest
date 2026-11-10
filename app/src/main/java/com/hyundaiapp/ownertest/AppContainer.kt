@@ -1,14 +1,14 @@
-package com.hyundaiapp.sawcar
+package com.hyundaiapp.ownertest
 
 import android.app.Application
 import android.content.Context
 import android.util.Log
-import com.hyundaiapp.sawcar.game.GameConfig
-import com.hyundaiapp.sawcar.game.GameEngine
-import com.hyundaiapp.sawcar.game.GameSnapshot
-import com.hyundaiapp.sawcar.signals.CarSignals
-import com.hyundaiapp.sawcar.signals.PleosCarSignals
-import com.hyundaiapp.sawcar.voice.CarVoice
+import com.hyundaiapp.ownertest.game.GameConfig
+import com.hyundaiapp.ownertest.game.GameEngine
+import com.hyundaiapp.ownertest.game.GameSnapshot
+import com.hyundaiapp.ownertest.signals.CarSignals
+import com.hyundaiapp.ownertest.signals.PleosCarSignals
+import com.hyundaiapp.ownertest.voice.CarVoice
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -61,7 +61,7 @@ class AppContainer(context: Context) {
             "retry=${s.retryCount} invHint=${s.investigationHint}"
 
     companion object {
-        const val TAG = "SawCarGame"
+        const val TAG = "OwnerTestGame"
         private const val TICK_MS = 250L
         /** 시연·실측용: 괴물 15초, 신호 10초 */
         val FAST = GameConfig(
@@ -76,7 +76,7 @@ class AppContainer(context: Context) {
     }
 }
 
-class SawCarApp : Application() {
+class OwnerTestApp : Application() {
     lateinit var container: AppContainer
         private set
 
@@ -86,4 +86,4 @@ class SawCarApp : Application() {
     }
 }
 
-val Context.container: AppContainer get() = (applicationContext as SawCarApp).container
+val Context.container: AppContainer get() = (applicationContext as OwnerTestApp).container

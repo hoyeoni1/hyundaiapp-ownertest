@@ -1,9 +1,9 @@
-package com.hyundaiapp.sawcar.ui
+package com.hyundaiapp.ownertest.ui
 
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Rect
-import com.hyundaiapp.sawcar.game.GameSnapshot
-import com.hyundaiapp.sawcar.game.View
+import com.hyundaiapp.ownertest.game.GameSnapshot
+import com.hyundaiapp.ownertest.game.View
 
 /** 1536×1024 이미지 안의 자리들 — 이미지 비율 좌표(0~1). 탭 판정과 표시에 쓴다 */
 object Spots {

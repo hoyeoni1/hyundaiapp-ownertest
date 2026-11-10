@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 # 전 과정을 돌리며 장면마다 스크린샷을 찍는다(화면 확인용). 본편은 촬영용 타이머(괴물 70초 뒤·60초 여유), 분기는 빠른 타이머.
-# usage: bash tools/shots-sawcar.sh <출력 폴더>   (앱 실행 중, `tools/vconsole.sh up` 뒤)
+# usage: bash tools/shots-ownertest.sh <출력 폴더>   (앱 실행 중, `tools/vconsole.sh up` 뒤)
 set -uo pipefail
 export PATH="$PATH:/c/Users/lmh31/AppData/Local/Android/Sdk/platform-tools"
 HERE=$(cd "$(dirname "$0")" && pwd)
 OUT=${1:-shots}; mkdir -p "$OUT"
-A=${ADB:-adb}; PKG=com.hyundaiapp.sawcar
+A=${ADB:-adb}; PKG=com.hyundaiapp.ownertest
 dbg() { "$A" shell am broadcast -a $PKG.DEBUG "$@" >/dev/null; }
-demo() { bash "$HERE/demo-sawcar.sh" "$@" >/dev/null; }
+demo() { bash "$HERE/demo-ownertest.sh" "$@" >/dev/null; }
 shot() { sleep "${2:-0.8}"; "$A" exec-out screencap -p > "$OUT/$1.png"; echo "shot $1"; }
-last() { "$A" logcat -d -s SawCarGame:I | grep "phase=" | tail -1 | sed 's/^.*SawCarGame: //'; }
+last() { "$A" logcat -d -s OwnerTestGame:I | grep "phase=" | tail -1 | sed 's/^.*OwnerTestGame: //'; }
 waitfor() { local re="$1" secs="$2" i=0; while [ $i -lt "$secs" ]; do last | grep -qE "$re" && return 0; sleep 1; i=$((i+1)); done; echo "TIMEOUT /$re/: $(last)"; return 1; }
 
 demo reset; sleep 1; "$A" logcat -c; dbg --es action shots; sleep 1

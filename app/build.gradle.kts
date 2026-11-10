@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.hyundaiapp.sawcar"
+    namespace = "com.hyundaiapp.ownertest"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.hyundaiapp.sawcar"
+        applicationId = "com.hyundaiapp.ownertest"
         minSdk = 28
         targetSdk = 34
         versionCode = 1

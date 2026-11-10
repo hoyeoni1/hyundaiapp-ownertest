@@ -1,4 +1,4 @@
-package com.hyundaiapp.sawcar.signals
+package com.hyundaiapp.ownertest.signals
 
 import ai.pleos.playground.vehicle.Vehicle
 import ai.pleos.playground.vehicle.api.model.area.DoorArea
@@ -197,7 +197,7 @@ class PleosCarSignals(context: Context) : CarSignals {
     private fun log(msg: String) = Log.i(TAG, msg)
 
     companion object {
-        const val TAG = "SawCarSignals"
+        const val TAG = "OwnerTestSignals"
         private val TOKEN = Any()
         private const val MAX_ATTEMPTS = 15
         private const val RETRY_MS = 1_000L

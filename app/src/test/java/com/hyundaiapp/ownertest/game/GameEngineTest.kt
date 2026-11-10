@@ -1,9 +1,9 @@
-package com.hyundaiapp.sawcar.game
+package com.hyundaiapp.ownertest.game
 
-import com.hyundaiapp.sawcar.signals.CarState
-import com.hyundaiapp.sawcar.signals.DoorId
-import com.hyundaiapp.sawcar.signals.GearState
-import com.hyundaiapp.sawcar.signals.TurnSignal
+import com.hyundaiapp.ownertest.signals.CarState
+import com.hyundaiapp.ownertest.signals.DoorId
+import com.hyundaiapp.ownertest.signals.GearState
+import com.hyundaiapp.ownertest.signals.TurnSignal
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull

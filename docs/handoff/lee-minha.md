@@ -1,4 +1,4 @@
-# 인수인계 — 이민하 (쏘우카 기획·구현)
+# 인수인계 — 이민하 (오너테스트 기획·구현)
 
 담당 경로: 저장소 전체 (`app/`, `docs/`, `tools/`)
 
@@ -20,14 +20,14 @@
   - 콘솔 값 이름은 [docs/signal-mapping.md](../signal-mapping.md)의 실측 결과를 따른다(전조등 `lights?feature=headlamp_mode&value=LowBeam`, 깜빡이 `turn-signal?mode=BlinkLeft` 등).
 - 확인 방법:
   - 단위 테스트·빌드: `./gradlew :app:testDebugUnitTest :app:assembleDebug`
-  - 전 과정 자동: `bash tools/vconsole.sh up` → `bash tools/e2e-sawcar.sh` (약 2분, 빠른 타이머). 장면 스크린샷: `bash tools/shots-sawcar.sh <폴더>`
-  - 손으로: `tools/sawcar-console.html`을 브라우저로 열어 차 실내 배치의 버튼으로 조작. 앱 로그 태그 `SawCarGame`(엔진 상태 한 줄), `SawCarSignals`(신호), `SawCarUi`(이미지), `SawCarVoice`(TTS)
+  - 전 과정 자동: `bash tools/vconsole.sh up` → `bash tools/e2e-ownertest.sh` (약 2분, 빠른 타이머). 장면 스크린샷: `bash tools/shots-ownertest.sh <폴더>`
+  - 손으로: `tools/ownertest-console.html`을 브라우저로 열어 차 실내 배치의 버튼으로 조작. 앱 로그 태그 `OwnerTestGame`(엔진 상태 한 줄), `OwnerTestSignals`(신호), `OwnerTestUi`(이미지), `OwnerTestVoice`(TTS)
 
 ## 작업 기록 (최신이 위, 지우지 않음)
 
 ### 2026-11-10
-- 한 일: 저장소에 첫 업로드. 쏘우카 전용 웹 콘솔 `tools/sawcar-console.html` 추가(Virtual Console API에 직접 PUT, 하트비트·상태 폴링 포함).
-- 결정한 것과 이유: 팀장이 올린 자리표시 README는 쏘우카 README로 바꿨다. 인수인계 양식(`docs/handoff/README.md`)과 `.gitignore`는 팀 공용이라 그대로 둔다. 예전 합성용 배경판 폴더 `ssowcar_background_assets/`는 더 쓰지 않아 저장소에서 제외했다.
+- 한 일: 저장소에 첫 업로드. 전용 웹 콘솔 `tools/ownertest-console.html` 추가(Virtual Console API에 직접 PUT, 하트비트·상태 폴링 포함). **프로젝트 이름을 쏘우카(SAW CAR) → 오너테스트(OwnerTest)로 변경**: 패키지 `com.hyundaiapp.sawcar` → `com.hyundaiapp.ownertest`, 앱 이름, 로그 태그(`OwnerTestGame` 등), 디버그 브로드캐스트 액션, 도구 파일 이름(`*-ownertest.sh`), 문서. 로컬 폴더 이름(`hyundaiapp-sawcar`)만 아직 그대로다.
+- 결정한 것과 이유: 팀장이 올린 자리표시 README는 오너테스트 README로 바꿨다. 인수인계 양식(`docs/handoff/README.md`)과 `.gitignore`는 팀 공용이라 그대로 둔다. 예전 합성용 배경판 폴더 `ssowcar_background_assets/`는 더 쓰지 않아 저장소에서 제외했다.
 - 바꾼 파일: 전체(첫 커밋)
 
 ### 2026-11-09

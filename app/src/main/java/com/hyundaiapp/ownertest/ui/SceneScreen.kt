@@ -1,4 +1,4 @@
-package com.hyundaiapp.sawcar.ui
+package com.hyundaiapp.ownertest.ui
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
@@ -25,9 +25,9 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.hyundaiapp.sawcar.game.FlashReply
-import com.hyundaiapp.sawcar.game.GameSnapshot
-import com.hyundaiapp.sawcar.game.View
+import com.hyundaiapp.ownertest.game.FlashReply
+import com.hyundaiapp.ownertest.game.GameSnapshot
+import com.hyundaiapp.ownertest.game.View
 import kotlinx.coroutines.delay
 
 /** 시점의 상위(뒤로 가기) */

@@ -1,4 +1,4 @@
-package com.hyundaiapp.sawcar.ui
+package com.hyundaiapp.ownertest.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -19,10 +19,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.hyundaiapp.sawcar.AppContainer
-import com.hyundaiapp.sawcar.game.GameSnapshot
-import com.hyundaiapp.sawcar.game.Phase
-import com.hyundaiapp.sawcar.signals.SourceStatus
+import com.hyundaiapp.ownertest.AppContainer
+import com.hyundaiapp.ownertest.game.GameSnapshot
+import com.hyundaiapp.ownertest.game.Phase
+import com.hyundaiapp.ownertest.signals.SourceStatus
 import kotlinx.coroutines.delay
 
 /** 결말의 첫 목소리 — 핵심만. (문장, 다음 문장까지 ms) */

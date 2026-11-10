@@ -1,4 +1,4 @@
-package com.hyundaiapp.sawcar
+package com.hyundaiapp.ownertest
 
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -14,13 +14,13 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
-import com.hyundaiapp.sawcar.game.View
-import com.hyundaiapp.sawcar.ui.GameScreen
+import com.hyundaiapp.ownertest.game.View
+import com.hyundaiapp.ownertest.ui.GameScreen
 
 /**
  * adb로 조작(시연·실측 스크립트용):
- *   am broadcast -a com.hyundaiapp.sawcar.DEBUG --es view STEERING
- *   am broadcast -a com.hyundaiapp.sawcar.DEBUG --es action retry|reboard|restart|fast|speak|debug
+ *   am broadcast -a com.hyundaiapp.ownertest.DEBUG --es view STEERING
+ *   am broadcast -a com.hyundaiapp.ownertest.DEBUG --es action retry|reboard|restart|fast|speak|debug
  */
 class MainActivity : ComponentActivity() {
     private val debugReceiver = object : BroadcastReceiver() {
@@ -62,5 +62,5 @@ class MainActivity : ComponentActivity() {
         super.onDestroy()
     }
 
-    private companion object { const val DEBUG_ACTION = "com.hyundaiapp.sawcar.DEBUG" }
+    private companion object { const val DEBUG_ACTION = "com.hyundaiapp.ownertest.DEBUG" }
 }

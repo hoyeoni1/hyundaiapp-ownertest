@@ -1,19 +1,19 @@
 #!/usr/bin/env bash
-# 쏘우카 시연·실측용 콘솔 주입 (콘솔 = 손). 먼저 `bash tools/vconsole.sh up`.
+# 오너테스트 시연·실측용 콘솔 주입 (콘솔 = 손). 먼저 `bash tools/vconsole.sh up`.
 # usage:
-#   bash tools/demo-sawcar.sh reset        # 시작 전 상태(잠금 해제, 불·제상·열선·브레이크·깜빡이 끔, P)
-#   bash tools/demo-sawcar.sh lock         # 시작(문 잠금)
-#   bash tools/demo-sawcar.sh cabin on|off
-#   bash tools/demo-sawcar.sh heat 0..3
-#   bash tools/demo-sawcar.sh defrost on|off
-#   bash tools/demo-sawcar.sh beam Off|Auto|Position|LowBeam
-#   bash tools/demo-sawcar.sh high on|off
-#   bash tools/demo-sawcar.sh turn Off|BlinkLeft|BlinkRight|FlashLeft|FlashRight
-#   bash tools/demo-sawcar.sh answer       # ◀ ◀ ▶ (각 1.5초 켜고 끔)
-#   bash tools/demo-sawcar.sh brake on|off
-#   bash tools/demo-sawcar.sh door fl|fr|rl|rr open|close
-#   bash tools/demo-sawcar.sh gear Park|Drive
-#   bash tools/demo-sawcar.sh state        # 현재 콘솔 상태(JSON)
+#   bash tools/demo-ownertest.sh reset        # 시작 전 상태(잠금 해제, 불·제상·열선·브레이크·깜빡이 끔, P)
+#   bash tools/demo-ownertest.sh lock         # 시작(문 잠금)
+#   bash tools/demo-ownertest.sh cabin on|off
+#   bash tools/demo-ownertest.sh heat 0..3
+#   bash tools/demo-ownertest.sh defrost on|off
+#   bash tools/demo-ownertest.sh beam Off|Auto|Position|LowBeam
+#   bash tools/demo-ownertest.sh high on|off
+#   bash tools/demo-ownertest.sh turn Off|BlinkLeft|BlinkRight|FlashLeft|FlashRight
+#   bash tools/demo-ownertest.sh answer       # ◀ ◀ ▶ (각 1.5초 켜고 끔)
+#   bash tools/demo-ownertest.sh brake on|off
+#   bash tools/demo-ownertest.sh door fl|fr|rl|rr open|close
+#   bash tools/demo-ownertest.sh gear Park|Drive
+#   bash tools/demo-ownertest.sh state        # 현재 콘솔 상태(JSON)
 set -euo pipefail
 HERE=$(cd "$(dirname "$0")" && pwd)
 put() { bash "$HERE/vconsole.sh" put "$@"; }

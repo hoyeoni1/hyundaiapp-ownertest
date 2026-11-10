@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 # 시나리오 v1.2 전 과정을 에뮬레이터에서 돌린다(콘솔 = 손, 시점은 adb 브로드캐스트). 빠른 타이머(괴물 15~20초, 신호 10~15초).
-# 앱이 실행 중이어야 한다. 먼저 `bash tools/vconsole.sh up`. usage: bash tools/e2e-sawcar.sh > e2e.log 2>&1
+# 앱이 실행 중이어야 한다. 먼저 `bash tools/vconsole.sh up`. usage: bash tools/e2e-ownertest.sh > e2e.log 2>&1
 set -uo pipefail
 export PATH="$PATH:/c/Users/lmh31/AppData/Local/Android/Sdk/platform-tools"
 HERE=$(cd "$(dirname "$0")" && pwd)
 A=${ADB:-adb}
-PKG=com.hyundaiapp.sawcar
+PKG=com.hyundaiapp.ownertest
 dbg() { "$A" shell am broadcast -a $PKG.DEBUG "$@" >/dev/null; }
-demo() { bash "$HERE/demo-sawcar.sh" "$@" >/dev/null; }
+demo() { bash "$HERE/demo-ownertest.sh" "$@" >/dev/null; }
 say() { echo; echo "### $* ($(date +%H:%M:%S))"; }
-last() { "$A" logcat -d -s SawCarGame:I | grep "phase=" | tail -1 | sed 's/^.*SawCarGame: //'; }
+last() { "$A" logcat -d -s OwnerTestGame:I | grep "phase=" | tail -1 | sed 's/^.*OwnerTestGame: //'; }
 waitfor() { # waitfor <regex> <seconds>
   local re="$1" secs="$2" i=0
   while [ $i -lt "$secs" ]; do

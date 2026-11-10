@@ -1,4 +1,4 @@
-package com.hyundaiapp.sawcar.signals
+package com.hyundaiapp.ownertest.signals
 
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

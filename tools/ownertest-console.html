@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>쏘우카 콘솔</title>
+<title>오너테스트 콘솔</title>
 <style>
   :root {
     --bg: #0b0e12; --panel: #161a20; --panel-2: #1e232b; --line: #2a313b;
@@ -233,7 +233,7 @@
   function setHint(t) { $('hint').textContent = t || ''; }
   async function heartbeat() {
     try {
-      const r = await fetch(`${BASE}/browser/session?client=sawcar-console`, { method: 'POST' });
+      const r = await fetch(`${BASE}/browser/session?client=ownertest-console`, { method: 'POST' });
       setOnline(r.ok);
     } catch (e) { setOnline(false); }
   }
@@ -322,7 +322,7 @@
     lit('i-heat', v.heat > 0, 'amber');
     lit('i-brake', v.brake > 0, 'red');
 
-    // 룸미러: 쏘우카가 읽는 값 요약
+    // 룸미러: 오너테스트가 읽는 값 요약
     const openList = Object.entries(v.doors).filter(([, o]) => o).map(([k]) => ({ front_left: '운전석', front_right: '조수석', rear_left: '뒷좌', rear_right: '뒷우' }[k] || k));
     $('mirror').innerHTML =
       `<span class="l1">${v.locked ? '잠김' : '잠금 해제'} · 기어 ${v.gear === 'Park' ? 'P' : v.gear === 'Drive' ? 'D' : v.gear} · 문 ${openList.length ? openList.join('·') + ' 열림' : '모두 닫힘'}</span>` +
@@ -384,7 +384,7 @@
   heartbeat(); poll();
   setInterval(heartbeat, 1000);
   setInterval(poll, 1000);
-  log('쏘우카 콘솔 시작');
+  log('오너테스트 콘솔 시작');
 })();
 </script>
 </body>

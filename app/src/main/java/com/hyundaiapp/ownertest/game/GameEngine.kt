@@ -1,8 +1,8 @@
-package com.hyundaiapp.sawcar.game
+package com.hyundaiapp.ownertest.game
 
-import com.hyundaiapp.sawcar.signals.CarState
-import com.hyundaiapp.sawcar.signals.GearState
-import com.hyundaiapp.sawcar.signals.TurnSignal
+import com.hyundaiapp.ownertest.signals.CarState
+import com.hyundaiapp.ownertest.signals.GearState
+import com.hyundaiapp.ownertest.signals.TurnSignal
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlin.random.Random

@@ -1,4 +1,4 @@
-package com.hyundaiapp.sawcar.voice
+package com.hyundaiapp.ownertest.voice
 
 import ai.pleos.playground.tts.TextToSpeech
 import ai.pleos.playground.tts.constant.ErrorType
@@ -69,5 +69,5 @@ class CarVoice(context: Context) {
         tts.release()
     }
 
-    private companion object { const val TAG = "SawCarVoice" }
+    private companion object { const val TAG = "OwnerTestVoice" }
 }

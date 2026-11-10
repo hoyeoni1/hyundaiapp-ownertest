@@ -1,4 +1,4 @@
-package com.hyundaiapp.sawcar.ui
+package com.hyundaiapp.ownertest.ui
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Box
@@ -28,9 +28,9 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.hyundaiapp.sawcar.game.FlashReply
-import com.hyundaiapp.sawcar.game.MonsterHint
-import com.hyundaiapp.sawcar.signals.TurnSignal
+import com.hyundaiapp.ownertest.game.FlashReply
+import com.hyundaiapp.ownertest.game.MonsterHint
+import com.hyundaiapp.ownertest.signals.TurnSignal
 
 /** 매 프레임 갱신되는 시계(깜빡임·펄스용). 화면에 떠 있는 동안만 돈다 */
 @Composable

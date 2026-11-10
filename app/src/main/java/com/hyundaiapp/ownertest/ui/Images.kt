@@ -1,4 +1,4 @@
-package com.hyundaiapp.sawcar.ui
+package com.hyundaiapp.ownertest.ui
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -23,7 +23,7 @@ import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.IntSize
-import com.hyundaiapp.sawcar.R
+import com.hyundaiapp.ownertest.R
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -122,7 +122,7 @@ fun seq(ids: List<Int>, t: Float): List<Pair<Int, Float>> {
 
 /** 디코딩한 이미지 캐시. 한 장 6MB(ARGB)라 LRU로 묶고, 시점에 들어갈 때 그 시점의 장들을 미리 읽는다 */
 object ImageCache {
-    private const val TAG = "SawCarUi"
+    private const val TAG = "OwnerTestUi"
     private val lru = object : LruCache<Int, ImageBitmap>(budgetBytes()) {
         override fun sizeOf(key: Int, value: ImageBitmap): Int = value.width * value.height * 4
     }

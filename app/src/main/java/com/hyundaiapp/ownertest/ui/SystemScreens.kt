@@ -1,4 +1,4 @@
-package com.hyundaiapp.sawcar.ui
+package com.hyundaiapp.ownertest.ui
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
@@ -27,8 +27,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.hyundaiapp.sawcar.game.GameSnapshot
-import com.hyundaiapp.sawcar.signals.SourceStatus
+import com.hyundaiapp.ownertest.game.GameSnapshot
+import com.hyundaiapp.ownertest.signals.SourceStatus
 import kotlinx.coroutines.delay
 
 private val Ink = Color(0xFFD8D2C4)

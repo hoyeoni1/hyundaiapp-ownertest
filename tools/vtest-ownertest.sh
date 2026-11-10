@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# 신호 6개(+시작·결말·규칙) 실측: 콘솔 PUT → 2초 뒤 앱 로그(SawCarSignals)에 콜백이 찍히는지.
+# 신호 6개(+시작·결말·규칙) 실측: 콘솔 PUT → 2초 뒤 앱 로그(OwnerTestSignals)에 콜백이 찍히는지.
 # 앱이 설치·실행 중이어야 한다. 먼저 `bash tools/vconsole.sh up`.
-# usage: bash tools/vtest-sawcar.sh > vtest.log 2>&1
+# usage: bash tools/vtest-ownertest.sh > vtest.log 2>&1
 set -uo pipefail
 export PATH="$PATH:/c/Users/lmh31/AppData/Local/Android/Sdk/platform-tools"
 HERE=$(cd "$(dirname "$0")" && pwd)
@@ -12,9 +12,9 @@ step() {
   for req in "$@"; do bash "$HERE/vconsole.sh" put "$req" >/dev/null; done
   sleep 2
   echo "### $label  ($*)"
-  "$A" logcat -d -s SawCarSignals:I | grep -v "^---" | sed 's/^.*SawCarSignals: //' | sed 's/^/    /'
+  "$A" logcat -d -s OwnerTestSignals:I | grep -v "^---" | sed 's/^.*OwnerTestSignals: //' | sed 's/^/    /'
 }
-bash "$HERE/demo-sawcar.sh" reset >/dev/null
+bash "$HERE/demo-ownertest.sh" reset >/dev/null
 sleep 2
 step "실내등 ON" 'body?cabin_light=true'
 step "실내등 OFF" 'body?cabin_light=false'
