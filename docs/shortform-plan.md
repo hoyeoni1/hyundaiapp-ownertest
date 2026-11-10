@@ -54,14 +54,16 @@
 
 공통 몸 묘사(모든 판에 같은 문장): `the driver's body in first-person view: dark jeans on the lap at the bottom of the frame, two forearms in a dark long-sleeve jacket, hands with no watch and no rings`
 
+손 장면(①⑤)은 **타이트 POV**(핸들·계기판·센터 콘솔이 화면을 채우고 위아래는 어둠으로 떨어짐), 기둥 장면(②)만 **와이드 POV**(앞유리가 보여야 함). 둘 다 같은 소매·같은 손.
+
 | 파일 | 원본 | 프롬프트 |
 |---|---|---|
-| `v_pov_dark_hands` | v_f_dark_fog100.png (이미 세로) | `Keep this image exactly as it is and add [공통 몸 묘사], both hands resting on the steering wheel at the 9 and 3 positions. The only light on the hands is a faint glow from the center display. No text.` |
-| `v_pov_lit_hand_up` | f_lit_fog100.png (3:2) | `Extend this image to a 9:16 vertical frame keeping every existing pixel; add the lit dome light housing above and the dashboard, steering column and the driver's lap below. Add [공통 몸 묘사]: the left hand on the steering wheel, the right arm raised toward the ceiling with the right hand pressing the dome light switch. Warm dome light on. No text.` |
+| `v_pov_tight_lit` | f_lit_fog100.png (3:2) | `Reframe this same car interior as a tighter 9:16 first-person shot from the driver's eye level, looking slightly down: the steering wheel, instrument cluster and center console fill the frame; keep the same materials, colors and warm dome light. Add [공통 몸 묘사], both hands on the steering wheel at the 9 and 3 positions. The top and bottom edges fall off into darkness. No text, nothing taped to the wheel.` |
+| `v_pov_tight_dark` | v_pov_tight_lit (위 결과를 편집) | `Keep this image exactly as it is but turn the dome light off: the cabin is nearly black, the hands and the wheel lit only by a faint glow from the center display, the fogged windshield barely visible. No text.` |
 | `v_pov_lit_beam_fog100_hands` | f_lit_beam_fog100.png (3:2) | `Extend this image to a 9:16 vertical frame keeping every existing pixel; add the lit dome light housing above and the dashboard, steering column and the driver's lap below. Add [공통 몸 묘사], both hands on the steering wheel at the 9 and 3 positions. Dome light on, headlights glowing on the fogged windshield. No text.` |
 | `v_pov_lit_beam_fog0_hands` | f_lit_beam_fog0.png (3:2) | `Extend this image to a 9:16 vertical frame keeping every existing pixel; add the lit dome light housing above and the dashboard, steering column and the driver's lap below. Add [공통 몸 묘사], both hands on the steering wheel at the 9 and 3 positions. Dome light on, headlights on, the graffiti on the pillar unchanged. No text.` |
 
-검수: 손가락 다섯 개, 소매 색이 네 장 모두 같은지, 핸들 위치가 원본과 같은지. 한 장이 틀어지면 그 장만 다시. `v_f_dark_beam_fog100`·`v_f_dark_beam_fog0`는 쓰지 않는다(보관만).
+`v_pov_tight_dark`를 `v_pov_tight_lit`에서 만들면 손·핸들이 픽셀 단위로 같아 클립 ①의 첫·끝 프레임 기하가 일치한다(Veo는 손 동작과 빛 변화만 만들면 됨). 검수: 손가락 다섯 개, 소매 색이 네 장 모두 같은지, 와이드 두 장의 핸들 위치가 원본과 같은지. `v_f_dark_fog100`·`v_f_dark_beam_fog100`·`v_f_dark_beam_fog0`는 쓰지 않는다(보관만).
 
 늘리기가 안 되면 아래 프롬프트로 새로 만든다(일관성은 떨어짐).
 
@@ -76,11 +78,11 @@
 
 | # | 첫 / 끝 프레임 | 참조 | 프롬프트 |
 |---|---|---|---|
-| ① 더듬는 손 → 실내등 | v_pov_dark_hands / v_pov_lit_hand_up | — | `First-person view from the driver's seat in near-total darkness, windshield fogged; the driver's hands rest on the steering wheel, lit only by the faint glow of the center display. The right hand leaves the wheel, gropes across the dashboard and the stalk, presses two buttons with no effect, then reaches up to the ceiling and presses the dome light switch; warm light fills the cabin, matching the final frame. The left hand stays on the wheel; same dark sleeves throughout. Handheld, slightly unsteady. Audio: breathing, small clicks, one final click, no music. Grainy cinematic, desaturated teal and amber, heavy shadows.` |
+| ① 더듬는 손 → 실내등 | v_pov_tight_dark / v_pov_tight_lit | — | `Tight first-person view from the driver's seat in near-total darkness; the steering wheel and center console fill the frame, the driver's hands rest on the wheel, lit only by the faint glow of the center display. The right hand leaves the wheel, gropes across the dashboard and the stalk, presses two buttons with no effect, then reaches up past the top of the frame; a click, and warm dome light floods the cabin as the hand returns to the wheel, matching the final frame. The left hand stays on the wheel; same dark sleeves throughout. Handheld, slightly unsteady. Audio: breathing, small clicks, one final click, no music. Grainy cinematic, desaturated teal and amber, heavy shadows.` |
 | ② 기둥 | v_pov_lit_beam_fog100_hands / v_pov_lit_beam_fog0_hands | — | `First-person view from the driver's seat, dome light on, both hands on the steering wheel, headlights on. Condensation on the windshield clears from the center outward until a concrete pillar with red spray-painted Korean graffiti is fully visible. The hands stay still on the wheel; the letters must match the final frame exactly. Static camera. Audio: a soft click, low wind, then silence. Grainy cinematic, desaturated teal and amber, heavy shadows, no music.` |
 | ③ 접근 1 | v_m_monster1 / v_m_monster3 | — | `Rearview mirror view of a dark parking garage aisle. A tall featureless silhouette walks slowly toward the car, growing larger, no face. Static camera, faint flicker from a distant lamp. Audio: faint scraping, no music. Grainy cinematic, almost no light, desaturated teal and amber.` |
 | ④ 접근 2 | v_m_monster3 / v_m_monster5 | — | `Same rearview mirror. The silhouette comes close behind the car until it fills most of the mirror, no face, slight sway. Audio: scraping grows louder, a slow heartbeat, no music. Grainy cinematic, almost no light, desaturated teal and amber.` |
-| ⑤ 급한 손 | v_pov_lit_beam_fog0_hands / — | — | `First-person view from the driver's seat, dome light on, headlights lighting a concrete pillar ahead, both hands on the steering wheel. The right hand lets go and frantically flips the stalk, jabs buttons on the center console, grabs the wheel again; quick nervous movements, both hands always visible in the warm light, same dark sleeves. Static camera. Audio: rapid clicks, breathing, no music. Grainy cinematic, desaturated teal and amber, heavy shadows.` |
+| ⑤ 급한 손 | v_pov_tight_lit / — | — | `Tight first-person view from the driver's seat, dome light on, the steering wheel and center console filling the frame, both hands on the wheel. The right hand lets go and frantically flips the stalk, jabs buttons on the center console, grabs the wheel again; quick nervous movements, both hands always visible in the warm light, same dark sleeves. Static camera. Audio: rapid clicks, breathing, no music. Grainy cinematic, desaturated teal and amber, heavy shadows.` |
 
 편집 메모: 플랫폼 압축이 검정을 뭉개니 CapCut에서 전체 섀도 +8~12, 얇은 그레인. 룸미러 컷은 거울 부분이 밝아 그대로 둬도 된다.
 
