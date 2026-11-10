@@ -50,7 +50,14 @@
 | `v_m_monster3` | m_monster3 | 위와 같음 | 위와 같음 |
 | `v_m_monster5` | m_monster5 | 위와 같음 | 위와 같음 |
 
-늘리기가 안 되는 도구라면 [docs/image-list.md](image-list.md)의 해당 프롬프트에서 `3:2`를 `9:16`으로 바꿔 새로 만든다(일관성은 떨어짐).
+늘리기가 안 되면 아래 프롬프트로 새로 만든다(일관성은 떨어짐).
+
+- `v_f_dark_fog100` — First-person view from the driver's seat of a parked car at night in an underground parking garage, vertical framing that shows the headliner and dome light above and the dashboard and dark footwell below. Steering wheel, dashboard with a dark center screen, rearview mirror. The windshield is completely fogged over with condensation; nothing outside is visible. Interior nearly black, only a faint dashboard glow. Grainy cinematic photo, almost no light, desaturated teal and amber, heavy shadows, no text, 9:16.
+- `v_f_dark_beam_fog100` — Same vertical driver's seat view. The windshield is completely fogged over; the headlights are on, a diffuse white glow smeared across the fogged glass, nothing outside readable. Interior nearly black. Grainy cinematic photo, desaturated teal and amber, heavy shadows, no text, 9:16.
+- `v_f_dark_beam_fog0` — Same vertical driver's seat view. The windshield is clear; the headlights are on, lighting a flat gray concrete pillar directly ahead. On the pillar's flat face, large rough dripping red spray-painted Korean (Hangul) graffiti on two lines reading exactly "그것은 빨간 불빛을" / "무서워해". Wet floor reflections. Interior nearly black. Grainy cinematic photo, desaturated teal and amber, heavy shadows, 9:16.
+- `v_m_monster1` — View through a car's rearview mirror with the mirror frame visible, vertical framing with the dark headliner above and the dark windshield below the mirror: a dark concrete parking garage aisle behind the car, pillars receding, wet floor, one distant dim lamp. Far down the aisle a tall dark featureless humanoid silhouette stands, barely distinguishable from the dark. Grainy cinematic photo, almost no light, desaturated teal and amber, heavy shadows, no text, 9:16.
+- `v_m_monster3` — Same vertical rearview mirror view. A tall dark featureless humanoid silhouette stands a few car lengths behind, clearly taller than a person. Grainy cinematic photo, almost no light, desaturated teal and amber, heavy shadows, no text, 9:16.
+- `v_m_monster5` — Same vertical rearview mirror view. The silhouette is right behind the car, filling most of the mirror, no face, only the wet floor visible at the bottom. Grainy cinematic photo, almost no light, desaturated teal and amber, heavy shadows, no text, 9:16.
 
 ## Veo 클립 5개 (Flow, Veo 3.1 Fast, 9:16, 8초, 각 ≈20크레딧)
 
