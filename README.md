@@ -7,6 +7,7 @@
 ## 문서
 
 - 시나리오·진행: [docs/scenario-script.md](docs/scenario-script.md) — 구조도, 시점, 조사 ①②, 이벤트(괴물·신호), 시간 처리(힌트·게임 오버), 결말, 분기, 시연 순서
+- 숏폼(이민하 안): 타임라인 [docs/shortform-timeline.md](docs/shortform-timeline.md) · 소재·프롬프트 [docs/shortform-plan.md](docs/shortform-plan.md)
 - 화면 이미지: [docs/image-list.md](docs/image-list.md) — 생성 이미지 46장의 파일 이름과 프롬프트 (구판 합성 계획: [docs/frontend-plan.md](docs/frontend-plan.md))
 - 신호: [docs/signal-mapping.md](docs/signal-mapping.md) — 조작 6개의 SDK·퍼미션·콘솔 명령·**실측 결과**
 - 사용 가능 기능 목록: [docs/function-inventory.md](docs/function-inventory.md) · 조작별 퍼즐 예시: [docs/puzzle-ideas.md](docs/puzzle-ideas.md)
