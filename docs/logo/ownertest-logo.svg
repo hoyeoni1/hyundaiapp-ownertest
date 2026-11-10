@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900" font-family="Pretendard, 'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif">
+  <defs>
+    <!-- 마크: 핸들 테 안의 자물쇠. 선 굵기는 테 지름의 1/11 -->
+    <symbol id="mark" viewBox="0 0 200 200">
+      <circle cx="100" cy="100" r="86" fill="none" stroke="currentColor" stroke-width="18"/>
+      <!-- 스포크 3개 (왼·오른·아래) -->
+      <path d="M22 100 H58 M142 100 H178 M100 148 V186" stroke="currentColor" stroke-width="18" stroke-linecap="round" fill="none"/>
+      <!-- 자물쇠 고리 -->
+      <path d="M78 96 V80 a22 22 0 0 1 44 0 V96" stroke="currentColor" stroke-width="12" stroke-linecap="round" fill="none"/>
+      <!-- 자물쇠 몸통 -->
+      <rect x="66" y="94" width="68" height="52" rx="8" fill="currentColor"/>
+      <!-- 열쇠 구멍 (배경색으로 뚫음) -->
+      <circle cx="100" cy="115" r="7" fill="var(--bg, #0b0e12)"/>
+      <rect x="97" y="115" width="6" height="16" rx="3" fill="var(--bg, #0b0e12)"/>
+    </symbol>
+  </defs>
+
+  <!-- A. 가로형 (어두운 배경) -->
+  <g style="--bg:#0b0e12" color="#e0a450">
+    <rect x="40" y="40" width="820" height="260" rx="20" fill="#0b0e12"/>
+    <use href="#mark" x="90" y="70" width="200" height="200"/>
+    <text x="330" y="190" fill="#e0a450" font-size="108" font-weight="800" letter-spacing="-2">오너테스트</text>
+    <text x="334" y="245" fill="#8a857a" font-size="30" font-weight="600" letter-spacing="8">OWNER TEST</text>
+    <text x="60" y="290" fill="#555" font-size="18">A. 가로형 — 문서·README 머리</text>
+  </g>
+
+  <!-- B. 세로형 (영상 끝 카드) -->
+  <g style="--bg:#0b0e12" color="#e0a450">
+    <rect x="900" y="40" width="460" height="820" rx="20" fill="#0b0e12"/>
+    <use href="#mark" x="1010" y="150" width="240" height="240"/>
+    <text x="1130" y="520" fill="#e0a450" font-size="96" font-weight="800" text-anchor="middle" letter-spacing="-2">오너테스트</text>
+    <text x="1130" y="575" fill="#8a857a" font-size="26" font-weight="600" text-anchor="middle" letter-spacing="8">OWNER TEST</text>
+    <text x="1130" y="660" fill="#d8d2c4" font-size="30" text-anchor="middle">설명서를 체화하는 차 안의 방탈출</text>
+    <text x="1130" y="720" fill="#6a665e" font-size="22" text-anchor="middle">Pleos Connect</text>
+    <text x="920" y="850" fill="#555" font-size="18">B. 세로형 — 영상 끝 카드</text>
+  </g>
+
+  <!-- C. 마크만 (앱 아이콘·밝은 배경 검증) -->
+  <g style="--bg:#f2efe8" color="#0b0e12">
+    <rect x="40" y="340" width="260" height="260" rx="20" fill="#f2efe8"/>
+    <use href="#mark" x="70" y="370" width="200" height="200"/>
+    <text x="60" y="590" fill="#777" font-size="18">C. 마크 — 밝은 배경</text>
+  </g>
+  <g style="--bg:#7a0e0e" color="#f2efe8">
+    <rect x="320" y="340" width="260" height="260" rx="20" fill="#7a0e0e"/>
+    <use href="#mark" x="350" y="370" width="200" height="200"/>
+    <text x="340" y="590" fill="#e8b0b0" font-size="18">C'. 마크 — 붉은 배경(실패 화면)</text>
+  </g>
+  <g style="--bg:#0b0e12" color="#e0a450">
+    <rect x="600" y="340" width="260" height="260" rx="56" fill="#0b0e12"/>
+    <use href="#mark" x="640" y="380" width="180" height="180"/>
+    <text x="620" y="590" fill="#555" font-size="18">C''. 앱 아이콘 형태</text>
+  </g>
+
+  <!-- 쓰임 메모 -->
+  <text x="40" y="660" fill="#8a857a" font-size="22">마크: 핸들 테 + 스포크 3개 + 자물쇠. 색: 앰버 #e0a450 / 먹색 #0b0e12 / 글 #d8d2c4</text>
+  <text x="40" y="700" fill="#8a857a" font-size="22">영상 끝 카드는 B. 검정 화면에서 마크가 먼저 떠오르고 0.5초 뒤 글자.</text>
+  <text x="40" y="740" fill="#8a857a" font-size="22">글꼴: Pretendard(없으면 맑은 고딕) 800. 영문은 자간 넓게.</text>
+</svg>

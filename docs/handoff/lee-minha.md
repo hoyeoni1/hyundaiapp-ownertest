@@ -27,6 +27,7 @@
 
 ### 2026-11-10
 - 한 일: 저장소에 첫 업로드. 전용 웹 콘솔 `tools/ownertest-console.html` 추가(Virtual Console API에 직접 PUT, 하트비트·상태 폴링 포함). **프로젝트 이름을 쏘우카(SAW CAR) → 오너테스트(OwnerTest)로 변경**: 패키지 `com.hyundaiapp.sawcar` → `com.hyundaiapp.ownertest`, 앱 이름, 로그 태그(`OwnerTestGame` 등), 디버그 브로드캐스트 액션, 도구 파일 이름(`*-ownertest.sh`), 문서. 로컬 폴더 이름(`hyundaiapp-sawcar`)만 아직 그대로다.
+- 숏폼 챌린지: 영상 계획 [docs/shortform-plan.md](../shortform-plan.md)(콘티·세로 이미지·Veo 프롬프트·일관성 가이드·일정)와 로고 시안 `docs/logo/ownertest-logo.svg` 추가. 영상 제작은 11.11~13, 링크 제출 11.14 예정.
 - 결정한 것과 이유: 팀장이 올린 자리표시 README는 오너테스트 README로 바꿨다. 인수인계 양식(`docs/handoff/README.md`)과 `.gitignore`는 팀 공용이라 그대로 둔다. 예전 합성용 배경판 폴더 `ssowcar_background_assets/`는 더 쓰지 않아 저장소에서 제외했다.
 - 바꾼 파일: 전체(첫 커밋)
 
