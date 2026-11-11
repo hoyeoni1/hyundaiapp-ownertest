@@ -31,6 +31,15 @@
 
 ## 작업 기록 (최신이 위, 지우지 않음)
 
+### 2026-11-11 — 제출용 release APK 준비 PR(장호연 "APK 준비 진행")
+- PR: https://github.com/hoyeoni1/hyundaiapp-ownertest/pull/1 (브랜치 `feat/release-apk-webp`, 커밋 3개). **머지는 장호연**, 앱 담당 이민하 확인 필요(앱 리소스·`tools/`를 고침)
+- 내용: ① 장면 이미지 46장 PNG → WebP 손실 품질 98(88.8MB → 13.4MB, 이름·해상도 그대로, 코드 변경 없음) ② `app/build.gradle.kts`에 release 서명 설정(차슐랭과 같은 방식, `local.properties`의 `release.*`) ③ `tools/build-release.sh`(단위 테스트 → assembleRelease → 서명 확인 → 95MB 미만 확인 → `apk/` 복사) ④ `apk/SamgakGorae_OwnerTest_release.apk`(54MB) ⑤ `CLAUDE.md`·`README.md`의 이미지 안내
+- 확인: 단위 테스트 16개 통과, 디버그 APK 138MB → 38MB, release는 팀 release 키로 서명(apksigner verify 통과). 에뮬레이터에 release APK를 설치해 `tools/e2e-ownertest.sh` 전 과정 통과(시작 → 결말, 분기 3개), 시작 화면·핸들 확대·기둥 장면을 캡처해 이미지가 정상으로 나오는 것 확인. 화질은 가장 어두운 장면을 밝기 4배로 늘려 원본과 비교(차이 거의 없음), 46장 중 최악 PSNR 37.6dB
+- 이 PC 설정: `local.properties`에 차슐랭의 `release.*` 4줄을 복사해 둠(저장소에 안 올라감). 에뮬레이터의 오너테스트는 디버그 설치본을 지우고 release로 바꿔 설치함(서명이 달라 덮어쓰기 불가). 끝난 뒤 에뮬레이터·콘솔 하트비트는 껐음
+- 일부러 안 한 것: **디버그 브로드캐스트 리시버 제거** — 빠른 타이머·시점 전환(시연 스크립트, 영상 촬영)이 여기에 기대고 있어 release에서 빼면 제출 APK로 시연을 못 함. 앱 아이콘, `versionName`, minify도 그대로
+- 머지 뒤 할 일: 기획서 7번 칸 release APK 경로 채우기 → DOCX 재생성 → `submission-filled/ownertest-application-filled.docx` 다시 만들기
+- 바꾼 파일(main): 이 문서. 나머지는 PR 브랜치
+
 ### 2026-11-11 — 채운 신청서(01·04) 만듦(장호연 "둘 다 진행")
 - 팀 폴더(git 아님) `submission-filled/ownertest-application-filled.docx`를 새로 만듦: 저장소 `docs/submission/ownertest-application.docx`(01·04 빈칸)에 차슐랭 채운 판의 01·04 요소(9·10·13~18·22·75번)를 옮김. 차슐랭·크롱과 같은 방법이고 같은 팀 정보(팀 5명, 부문 일반, 작성일 2026-11-10)가 들어감. 확인: 01·04는 차슐랭 채운 판과 같고 나머지는 저장소 판과 같음(텍스트 비교), Word로 열림(18쪽). 저장소에는 올리지 않음(연락처 포함)
 - **장호연이 볼 것**: 앱명 줄은 오너테스트로 맞는지, 작성일, 이상준 소속·이메일 빈칸. 기획서를 다시 생성하면 이 파일도 같은 방법으로 다시 만들어야 함. 메일에 붙일 파일은 이 파일
