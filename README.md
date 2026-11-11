@@ -31,7 +31,7 @@ app/src/main/java/com/hyundaiapp/ownertest/
 ├─ ui/GameScreen.kt             단계 분기, 결말 자막·음성, 디버그 오버레이
 ├─ AppContainer.kt              신호 → 엔진 연결, 250ms 틱, 엔진 상태 로그(OwnerTestGame), FAST/SHOTS 타이머(시연·촬영용)
 └─ MainActivity.kt              앱 진입 + adb 브로드캐스트(시점·분기·음성)
-app/src/main/res/drawable-nodpi/          생성 이미지 46장 (1536×1024, docs/image-list.md의 이름 그대로)
+app/src/main/res/drawable-nodpi/          생성 이미지 46장 (1536×1024 WebP 품질 98, docs/image-list.md의 이름 그대로)
 app/src/test/.../game/GameEngineTest.kt   16개 (시작·쪽지·야광·기둥·괴물·게임 오버·힌트·신호·클리어·조기 탈출·기어)
 tools/
 ├─ vconsole.sh      에뮬레이터 콘솔 조작(크루즈브레이커와 동일)

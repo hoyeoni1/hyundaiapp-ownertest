@@ -1,7 +1,15 @@
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.compose")
+}
+
+// 제출 release 서명. 키 파일·비밀번호는 저장소 밖(local.properties의 release.*)에 둔다. 값이 없으면 서명 없는 release
+val localProperties = Properties().apply {
+    val file = rootProject.file("local.properties")
+    if (file.exists()) file.inputStream().use { load(it) }
 }
 
 android {
@@ -14,6 +22,21 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "0.1"
+    }
+
+    val releaseStore = localProperties.getProperty("release.storeFile")?.takeIf { it.isNotBlank() }
+    signingConfigs {
+        if (releaseStore != null) create("release") {
+            storeFile = file(releaseStore)
+            storePassword = localProperties.getProperty("release.storePassword")
+            keyAlias = localProperties.getProperty("release.keyAlias")
+            keyPassword = localProperties.getProperty("release.keyPassword")
+        }
+    }
+    buildTypes {
+        getByName("release") {
+            if (releaseStore != null) signingConfig = signingConfigs.getByName("release")
+        }
     }
 
     buildFeatures {
