@@ -7,7 +7,7 @@
   - 이유: git·GitHub URL·터미널·Windows 콘솔(cp949)에서 한글 파일명이 깨지거나 이스케이프되어 링크와 명령이 꼬인다.
 - 문서 **내용**은 한글로 써도 된다. 제목도 한글 가능.
 - 기존 관례가 있는 이름은 그대로 둔다: `README.md`, `CLAUDE.md`, `PRD.md`, Gradle 프로젝트 이름(`OwnerTest`), 코드 파일의 언어별 관례.
-- 이미지 리소스는 Android 규칙대로 영문 소문자·숫자·밑줄(`_`)만 쓴다(`res/drawable-nodpi/f_dark_fog0.png`). 이름은 [docs/image-list.md](docs/image-list.md)와 맞춘다.
+- 이미지 리소스는 Android 규칙대로 영문 소문자·숫자·밑줄(`_`)만 쓴다(`res/drawable-nodpi/f_dark_fog0.webp`). 이름은 [docs/image-list.md](docs/image-list.md)와 맞춘다.
 - 파일 이름을 바꾸면 그 파일을 가리키는 문서 속 링크·경로도 함께 고친다.
 
 ## 작업 방식 (사람·에이전트 모두)
@@ -28,6 +28,7 @@
 
 ## 확인 방법
 - 단위 테스트·빌드: `./gradlew :app:testDebugUnitTest :app:assembleDebug`
+- 제출용 release APK: `bash tools/build-release.sh` → `apk/SamgakGorae_OwnerTest_release.apk` (서명 값은 `local.properties`의 `release.*`, 저장소에 올리지 않음)
 - 에뮬레이터 전 과정: `bash tools/vconsole.sh up` → `bash tools/e2e-ownertest.sh` (약 2분)
 - 장면 스크린샷: `bash tools/shots-ownertest.sh <폴더>`
 - 개발 환경(JDK 17, Android SDK, 에뮬레이터 `Pleos_Connect_2_1_0`)은 CruiseBreaker `docs/dev-env-setup-log.md`와 같다.
@@ -35,6 +36,6 @@
 ## 함정 (README·인수인계에서 옮김)
 - `object Img`의 리소스 id를 `const val`로 두면 런타임 `NoSuchMethodError`가 난다 → getter로 둔다.
 - 이미지는 `ImageBitmap.imageResource`가 아니라 `BitmapFactory`로 읽는다(디코딩 실패 때 죽음).
-- 이미지 47장이 장당 1.5~2.4MB(합계 약 90MB)다. 새 이미지를 넣을 때 APK 크기를 확인한다.
+- 이미지 46장은 WebP(품질 98, 합계 약 13MB)로 넣는다. PNG 원본은 장당 1.5~2.4MB(합계 약 89MB)라 그대로 넣으면 APK가 GitHub 한도(100MB)를 넘는다. 새 이미지도 WebP로 바꿔 넣고, `tools/build-release.sh`의 용량 확인을 통과하는지 본다.
 - 앱은 에뮬레이터 화면(2560×1440)의 오른쪽 2/3(≈1707×1219)만 쓴다. 3:2 이미지는 양옆이 조금 잘린다.
 - 콘솔 값 이름은 [docs/signal-mapping.md](docs/signal-mapping.md)의 실측 결과를 따른다.
