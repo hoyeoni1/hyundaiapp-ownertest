@@ -209,7 +209,7 @@
 
 ## 7. 참고자료
 
-- GitHub 저장소: https://github.com/hoyeoni1/hyundaiapp-ownertest (소스 코드. release APK: 【제출 전 기입 — 서명 APK를 올린 뒤 apk/SamgakGorae_OwnerTest_release.apk 또는 GitHub Releases 주소】)
+- GitHub 저장소: https://github.com/hoyeoni1/hyundaiapp-ownertest (소스 코드 + apk/SamgakGorae_OwnerTest_release.apk)
 - 시연 영상: 【제출 전 기입 — 영상 링크 또는 첨부 파일명】
 - 화면: 아래 화면은 앱을 Pleos Connect 에뮬레이터 2.1.0에서 실행해 찍은 것이다.
 

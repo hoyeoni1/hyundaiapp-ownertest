@@ -5,7 +5,7 @@
 ## 현재 상태 (2026-11-11 기준, 매번 덮어쓰기)
 
 - **제출 규칙 변경(11-11 사이트 공지 「비공개 GitHub 저장소 제출 방법 및 접수 관련 추가 안내」, FAQ 7번)**: 심사용 계정 초대는 필요 없음. 접수 메일에 저장소 주소 + **최종 커밋 해시**를 적고, **11-16까지 저장소를 공개로 전환해 11-23까지 유지**해야 개발 산출물 가산점이 반영됨(공개가 어려우면 소스+APK 압축 파일 주소를 마감 전 메일로). README에 에뮬레이터 버전·화면 규격 필요. 서명 이미지 삽입·PDF 인정. 요약 도구로 읽었으니 발송 전 원문 직접 확인
-- **기획서를 실제 앱에 맞춤(11-11 정정 완료, DOCX 재생성)**: 아래 작업 기록 참고. 기획서 빈칸은 이제 3곳 — 7번 **release APK 경로**(새로 빈칸으로 바꿈), 7번 시연 영상 링크, 8번 숏폼 링크. 디버그 APK가 138MB라 GitHub 일반 push 한도(100MB)를 넘음 → 이미지 WebP 변환 또는 GitHub Releases로 올린 뒤 경로를 적는다
+- **기획서를 실제 앱에 맞춤(11-11 정정 완료, DOCX 재생성)**: 아래 작업 기록 참고. 기획서 빈칸은 2곳 — 7번 시연 영상 링크, 8번 숏폼 링크. release APK는 PR #1 머지로 `apk/SamgakGorae_OwnerTest_release.apk`(54MB)에 있고 7번 경로도 채움. 채운 제출본은 팀 폴더 `submission-filled/ownertest-application-filled.docx`
 - **기획서에 새로 적은 약속 3개(모두 5절 일정 "~12/2", 지금 앱에는 없음)** → 이민하에게 전달 필요: ① 문이 잠긴 채 시작했을 때의 안내 문구 ② 시작 화면의 시동·환기 안내("밀폐된 곳에서는 시동을 걸지 않는다") ③ 시동을 걸지 않은 전원 상태(ACC)에서 어떤 신호가 들어오는지 확인
 - **기획서에서 아직 안 고친 것**: 결말 대사 "문은 내가 잠갔어" — 앱 TTS(`ui/GameScreen.kt`의 `ENDING_LINES`)와 같이 바꿔야 해서 기획서만 고치지 않음. 근거는 팀 폴더 `contest-critical-review-2026-11-11.md` 3절
 - `docs/signal-mapping.md`(이민하)에는 "독서등", "1초 유지", 마지막 OFF 요구가 그대로 있어 코드·기획서와 다름 → 이민하에게 알릴 것
@@ -30,6 +30,13 @@
 - 확인 방법: `python shortform/scripts/build_final.py`(필요: `pip install imageio-ffmpeg`)로 최종본·SRT·효과음 파일이 다시 만들어진다. 약 45초.
 
 ## 작업 기록 (최신이 위, 지우지 않음)
+
+### 2026-11-11 — PR #1 머지, 기획서 7번 APK 경로 기입(장호연 "승인 너가 해")
+- PR #1(제출용 release APK)을 장호연의 명시적 지시로 에이전트가 머지함(merge commit `43ff90a`). 평소 규칙(머지는 장호연만)의 이번 한 번 예외이고, 이민하의 사전 확인은 받지 않았음 → **이민하에게 알릴 것**: 이미지가 WebP로 바뀜, `tools/build-release.sh` 추가, 앞으로 이미지는 WebP로 넣기
+- main에 `apk/SamgakGorae_OwnerTest_release.apk`(54MB)와 WebP 이미지 46장이 들어온 것을 확인한 뒤 `docs/proposal.md` 7번의 APK 경로 빈칸을 채움 → DOCX 재생성 → `submission-filled/ownertest-application-filled.docx` 다시 만듦(01·04 그대로, Word로 열림 확인)
+- 기획서 남은 빈칸 2곳: 7번 시연 영상 링크, 8번 숏폼 링크
+- 브랜치 `feat/release-apk-webp`는 지우지 않고 남김
+- 바꾼 파일: `docs/proposal.md`, `docs/submission/ownertest-application.docx`, 이 문서
 
 ### 2026-11-11 — 제출용 release APK 준비 PR(장호연 "APK 준비 진행")
 - PR: https://github.com/hoyeoni1/hyundaiapp-ownertest/pull/1 (브랜치 `feat/release-apk-webp`, 커밋 3개). **머지는 장호연**, 앱 담당 이민하 확인 필요(앱 리소스·`tools/`를 고침)
