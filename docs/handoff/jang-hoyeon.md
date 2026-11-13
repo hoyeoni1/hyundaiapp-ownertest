@@ -32,6 +32,14 @@
 
 ## 작업 기록 (최신이 위, 지우지 않음)
 
+### 2026-11-14 — 숏폼 링크를 넣은 뒤 최종 검토(장호연 "채웠어 최종 검토")
+- `submission-filled/ownertest-application-signed.docx`(17쪽) 다시 검토: 빈칸 0, 01 참가신청서·구성원 5명(소속·휴대폰·이메일·역할 모두 있음)·04 동의 5명·서명 그림 5개·서명일자 5개, 8번에 숏폼 링크 있음. 숏폼 링크는 로그인 없이 열림
+- 저장소 DOCX(`docs/submission/ownertest-application.docx`)가 8번 자리 표시를 그대로 두고 있어 `docs/proposal.md`에서 다시 만듦(01·04는 빈 판 그대로, 연락처 없음 확인). 이제 본문이 제출본과 같음
+- 제출용 PDF를 `submission-filled/ownertest-application-signed.pdf`로 함께 둠(Word에서 내보냄)
+- 양식 8번 아래 안내문은 "공유 링크와 첨부자료에도 개인정보·계정정보·개발자 실명이 노출되지 않도록"인데 숏폼 채널 이름이 실명으로 보임 → 바꿀지는 장호연 결정(YouTube 채널 이름만 바꾸면 되고 링크·해시는 그대로)
+- 메일 초안(`submission-emails-2026-11-14.md`)의 오너테스트 항목에 숏폼 링크와 이 커밋의 해시를 넣음. **이 커밋 뒤로는 접수 메일을 보낼 때까지 저장소를 건드리지 말 것**(해시가 바뀜)
+- 바꾼 파일: `docs/submission/ownertest-application.docx`, 이 문서
+
 ### 2026-11-14 — 숏폼 링크 기획서 8번 칸 기입(장호연 "올렸어 이거 기획서에 넣어줘")
 - YouTube Shorts https://youtube.com/shorts/Ec3yAQpyyB4 (공개, 50초, 설명란 해시태그 `#HMG차량용앱개발공모전 #PleosAppMarket #HMG앱공모전` 3개 — 필수 태그 포함·총 2~3개 조건 충족, 11-14 확인)
 - 서명본 `submission-filled/ownertest-application-signed.docx` 8번 칸 자리 표시를 링크로 바꿈(다시 생성하지 않음, 서명 유지, Word 17쪽 확인). 바꾸기 전 판은 `ownertest-application-signed-before-shortform.docx`. 저장소 `docs/proposal.md`도 같은 링크로
