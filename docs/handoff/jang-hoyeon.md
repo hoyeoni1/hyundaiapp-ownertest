@@ -32,6 +32,17 @@
 
 ## 작업 기록 (최신이 위, 지우지 않음)
 
+### 2026-11-14 — 접수 메일 발송, 팀 폴더 정리(장호연 "메일 3통 보냈어", "폴더가 너무 지저분해서 정리좀해줘")
+- **접수 메일 발송 완료(장호연, 11-14 오전)**: 세 작품을 작품별로 한 통씩. 이 저장소에 대해 메일에 적은 최종 커밋은 `5116f611af9986e24fc4cc5767de3e3bd3b1aedc`. 심사는 이 커밋 기준이므로 **강제 push·이력 재작성 금지**(이 커밋이 이력에 남아 있어야 함). 저장소는 11-23까지 공개 유지. 고쳐 내려면 11-15 23:59 전에 같은 주소에서 제목 앞 `[수정제출] `, 전체 자료 다시 첨부
+- **팀 폴더(git 아님) 정리**: 루트에 흩어져 있던 문서·화면·연습 프로젝트를 종류별 폴더로 옮김. 저장소 3개와 `submission-filled/`는 제자리. 구성과 옛 경로 대응은 팀 폴더 `CLAUDE.md`의 "폴더 구성" 절
+  - 루트의 참고 문서(`vehicle-data-findings.md`, `dev-env-setup-log.md`, `app-dev-policy-review.md`, `contest-analysis-todo.md`, `organizer-inquiry-email.md`, `transcript.txt`, `application-form-original.docx`) → `reference/`
+  - `contest-critical-review-2026-11-09.md`, `contest-critical-review-2026-11-11.md`, `project-review-2026-11-04.md` → `reviews/`
+  - 10월 아이디어 회의 문서 6개 → `idea-meeting/`
+  - `screenshots-2026-11-NN/` → `screenshots/2026-11-NN/`, `PleosDataProbe/`·`PleosHelloWorld/` → `probes/` 아래, `submission-emails-2026-11-14.md` → `submission-filled/` 아래
+- 같은 날 지운 것: 빌드 결과물(`app/build`, `core/build` — 다시 빌드하면 생김), 루트의 로그 5개, `submission-filled/`의 중간 판 7개(이름에 `before`), 중복 HTML 3개(`*-standalone.html`). 제출 최종본·APK·`local.properties`는 그대로
+- **이 문서의 이전 기록에 적힌 팀 폴더 경로는 옮기기 전 기준**이다(기록은 고치지 않음). 참고 문서 안에 적힌 옛 경로도 고치지 않음
+- 바꾼 파일: 이 문서
+
 ### 2026-11-14 — 숏폼 링크를 넣은 뒤 최종 검토(장호연 "채웠어 최종 검토")
 - `submission-filled/ownertest-application-signed.docx`(17쪽) 다시 검토: 빈칸 0, 01 참가신청서·구성원 5명(소속·휴대폰·이메일·역할 모두 있음)·04 동의 5명·서명 그림 5개·서명일자 5개, 8번에 숏폼 링크 있음. 숏폼 링크는 로그인 없이 열림
 - 저장소 DOCX(`docs/submission/ownertest-application.docx`)가 8번 자리 표시를 그대로 두고 있어 `docs/proposal.md`에서 다시 만듦(01·04는 빈 판 그대로, 연락처 없음 확인). 이제 본문이 제출본과 같음
