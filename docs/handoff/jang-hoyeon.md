@@ -32,6 +32,11 @@
 
 ## 작업 기록 (최신이 위, 지우지 않음)
 
+### 2026-11-14 — 숏폼 링크 기획서 8번 칸 기입(장호연 "올렸어 이거 기획서에 넣어줘")
+- YouTube Shorts https://youtube.com/shorts/Ec3yAQpyyB4 (공개, 50초, 설명란 해시태그 `#HMG차량용앱개발공모전 #PleosAppMarket #HMG앱공모전` 3개 — 필수 태그 포함·총 2~3개 조건 충족, 11-14 확인)
+- 서명본 `submission-filled/ownertest-application-signed.docx` 8번 칸 자리 표시를 링크로 바꿈(다시 생성하지 않음, 서명 유지, Word 17쪽 확인). 바꾸기 전 판은 `ownertest-application-signed-before-shortform.docx`. 저장소 `docs/proposal.md`도 같은 링크로
+- 주의: 8번 칸 아래 안내문은 "공유 링크에 개발자 실명이 노출되지 않도록"인데, 채널 이름이 실명(`장호연`, `@hoyhoyhoyeoni`)으로 보임 → 장호연에게 알림. 저장소 DOCX(`docs/submission/ownertest-application.docx`)는 재생성 안 함(01·04 빈 판)
+
 ### 2026-11-14 — 제출본 최종 검토, 접수 메일 초안(장호연 "최종 기획서 3개 최종 검토하고 메일 3통 초안 써줘")
 - 접수 규칙을 사이트 원문으로 다시 확인(지원·제출 방법, 공지 3건): 수신 `appdevchallenge@hyundai-partners.com`, 제목 `[차량용 앱 개발 공모전] 팀명_대표자명`, 팀원 전원 참조, 메일에 저장소 주소와 최종 커밋 해시, DOCX·PDF 모두 인정, 여러 번 내면 마지막 제출본만 심사. 사이트에는 복수 출품 때의 제목 규칙이 없어, 세 통이 수정 제출로 묶이지 않도록 제목에 앱명을 넣기로 함(`[차량용 앱 개발 공모전] 앱명_삼각고래_장호연`, 10-28 설명회 안내와 같음)
 - `submission-filled/ownertest-application-signed.docx`(17쪽) 검토: 01 참가신청서·구성원 5명·04 동의 5명·서명 그림 5개·서명일자 5개 있음. 본문(02)은 저장소 DOCX와 같음

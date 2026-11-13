@@ -222,4 +222,4 @@ Pleos Connect는 2030년까지 글로벌 약 2,000만 대 탑재를 목표로 �
 
 ## 8. 숏폼 링크
 
-【제출 전 기입 — 숏폼 게시 링크】
+https://youtube.com/shorts/Ec3yAQpyyB4
