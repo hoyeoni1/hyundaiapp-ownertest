@@ -31,6 +31,10 @@
 
 ## 작업 기록 (최신이 위, 지우지 않음)
 
+### 2026-11-13 — 최종 점검(장호연 "이제 할 거 더 있는지 최종 점검")
+- 브랜치 정리(장호연 "오너테스트도 브랜치 정리해줘"): 머지된 `feat/release-apk-webp`(PR #1) 삭제, 남은 브랜치 `main`뿐
+- 제출 전 남은 것(11-13 점검): README에 APK 위치(`apk/SamgakGorae_OwnerTest_release.apk`)·에뮬레이터 버전·화면 규격이 없고 상태 줄이 11-09 기준, 기획서 7번 칸 2곳(시연 영상·숏폼 링크) 빈칸, 서명된 신청서 없음(`submission-filled/`에 01·04 채운 판만), 구판 `PRD.md`
+
 ### 2026-11-11 — PR #1 머지, 기획서 7번 APK 경로 기입(장호연 "승인 너가 해")
 - PR #1(제출용 release APK)을 장호연의 명시적 지시로 에이전트가 머지함(merge commit `43ff90a`). 평소 규칙(머지는 장호연만)의 이번 한 번 예외이고, 이민하의 사전 확인은 받지 않았음 → **이민하에게 알릴 것**: 이미지가 WebP로 바뀜, `tools/build-release.sh` 추가, 앞으로 이미지는 WebP로 넣기
 - main에 `apk/SamgakGorae_OwnerTest_release.apk`(54MB)와 WebP 이미지 46장이 들어온 것을 확인한 뒤 `docs/proposal.md` 7번의 APK 경로 빈칸을 채움 → DOCX 재생성 → `submission-filled/ownertest-application-filled.docx` 다시 만듦(01·04 그대로, Word로 열림 확인)
